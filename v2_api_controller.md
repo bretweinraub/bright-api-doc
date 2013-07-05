@@ -1,6 +1,64 @@
-![Bright](http://www.aura-software.com/wp-content/uploads/2012/04/lightbulb2-inverted-01.png)
+# Bright V2 API Specification
+## Table of Contents
+*	 1. [Introduction](#sec-1)
+*	 2. [General Usage](#sec-2)
+	*	 2.1. [RESTful API](#sec-2-1)
+		*	 2.1.1. [Determining your :id for create and update](#sec-2-1-1)
+	*	 2.2. [List of Available Resources](#sec-2-2)
+	*	 2.3. [Special Considerations for Cross-Browser Scripting Restrictions](#sec-2-3)
+*	 3. [Quick Start](#sec-3)
+	*	 3.1. [Prerequisite Data](#sec-3-1)
+	*	 3.2. [Specifying a results format](#sec-3-2)
+		*	 3.2.1. [Fetching an XML result](#sec-3-2-1)
+		*	 3.2.2. [Fetching an JSON result](#sec-3-2-2)
+*	 4. [Access Modes](#sec-4)
+	*	 4.1. [Via SCORMCloud App ID and Secret Key](#sec-4-1)
+	*	 4.2. [Via Bright API Key](#sec-4-2)
+	*	 4.3. [Via Realm ID and Secret Key](#sec-4-3)
+*	 5. [API Modules](#sec-5)
+	*	 5.1. [Registration](#sec-5-1)
+		*	 5.1.1. [Determining your :id for create and update](#sec-5-1-1)
+		*	 5.1.2. [Method: index](#sec-5-1-2)
+			*	 5.1.2.1. [HTTP Model](#sec-5-1-2-1)
+			*	 5.1.2.2. [parameters](#sec-5-1-2-2)
+			*	 5.1.2.3. [HTTP Codes](#sec-5-1-2-3)
+			*	 5.1.2.4. [Example](#sec-5-1-2-4)
+			*	 5.1.2.5. [Return Data](#sec-5-1-2-5)
+		*	 5.1.3. [Method: create](#sec-5-1-3)
+			*	 5.1.3.1. [Parameters](#sec-5-1-3-1)
+			*	 5.1.3.2. [HTTP Codes](#sec-5-1-3-2)
+			*	 5.1.3.3. [Example](#sec-5-1-3-3)
+	*	 5.2. [Course](#sec-5-2)
+		*	 5.2.1. [Determining your :id for create and update](#sec-5-2-1)
+		*	 5.2.2. [Method: Index](#sec-5-2-2)
+			*	 5.2.2.1. [HTTP Model:](#sec-5-2-2-1)
+			*	 5.2.2.2. [Parameters](#sec-5-2-2-2)
+			*	 5.2.2.3. [Example](#sec-5-2-2-3)
+			*	 5.2.2.4. [HTTP Codes](#sec-5-2-2-4)
+	*	 5.3. [Realm User](#sec-5-3)
+		*	 5.3.1. [Method: create](#sec-5-3-1)
+			*	 5.3.1.1. [Parameters](#sec-5-3-1-1)
+			*	 5.3.1.2. [HTTP Codes](#sec-5-3-1-2)
+			*	 5.3.1.3. [Example](#sec-5-3-1-3)
+		*	 5.3.2. [Method: update (gupdate)](#sec-5-3-2)
+			*	 5.3.2.1. [Parameters](#sec-5-3-2-1)
+			*	 5.3.2.2. [HTTP Codes](#sec-5-3-2-2)
+			*	 5.3.2.3. [Example](#sec-5-3-2-3)
+	*	 5.4. [API Key](#sec-5-4)
+		*	 5.4.1. [Method: create](#sec-5-4-1)
+			*	 5.4.1.1. [HTTP Model:](#sec-5-4-1-1)
+			*	 5.4.1.2. [Parameters](#sec-5-4-1-2)
+			*	 5.4.1.3. [Return Data](#sec-5-4-1-3)
+			*	 5.4.1.4. [Example:](#sec-5-4-1-4)
+			*	 5.4.1.5. [HTTP Codes](#sec-5-4-1-5)
+*	 6. [Debugging Errors](#sec-6)
+	*	 6.1. [Fetching HTTP Error Codes from a GET Request](#sec-6-1)
+	*	 6.2. [Fetching HTTP Error Codes from a POST Request](#sec-6-2)
+	*	 6.3. [Debugging Authentication Errors](#sec-6-3)
 
-## V2 API
+<a name="introduction"></a>
+<a name="sec-1"></a>
+## 1. Introduction
 
 This document describes how to use version 2 of the Bright API.
 
@@ -13,7 +71,10 @@ are available via which API calls.  It also covers what to do when things go wro
 
 More information about Bright and the Bright platform can be accessed from the [Aura Homepage](http://www.aura-software.com).
 
-## General Usage
+
+<a name="general-usage"></a>
+<a name="sec-2"></a>
+## 2. General Usage
 
 The Bright API is used to interact with Bright Server.  Typical things you might do with Bright are
 
@@ -28,7 +89,11 @@ http://en.wikipedia.org/wiki/Representational_state_transfer .
 ![](http://content.screencast.com/users/bretweinraub/folders/Jing/media/65b3da97-8fc0-47da-bc21-77159d7021c7/00000306.png)
 Source: [Wikipedia](http://en.wikipedia.org/wiki/Representational_state_transfer)
 
-### RESTful API
+
+
+<a name="general-usage-restful-api"></a>
+<a name="sec-2-1"></a>
+### 2.1. RESTful API
 
 The Restful api of bright is built around our main resource types:
   
@@ -105,7 +170,26 @@ resource you are accessing.
 	</tr>
 </table>
 
-### List of Resouces Available
+
+<a name="general-usage-restful-api-determining-your-id-for-create-and-update"></a>
+<a name="sec-2-1-1"></a>
+#### 2.1.1. Determining your :id for create and update
+
+Depending on which model you are accessing, the :id record can be specified differently.
+
+For instance, on registrations and courses, the SCORMCloud registration or course ID can be used 
+for :id.
+
+Please see the API documentuntation for a particular module to see information on how to correctly
+specify the :id field.
+
+See the [registration](#api-modules-registration-determining-your-id-for-create-and-update) section
+for an example.
+
+
+<a name="general-usage-list-of-available-resources"></a>
+<a name="sec-2-2"></a>
+### 2.2. List of Available Resources
 
 * Bright Api Keys (/bright/api/v2/api_key)
 * Course Provider (/bright/api/v2/course_provider)
@@ -115,7 +199,10 @@ resource you are accessing.
 * Embed Templates (/bright/api/v2/embed_template) [Note: in v3, this will be renamed simply "template"].
 * Invitations (/bright/api/v2/invitation)
 
-### Special Considerations for Cross-Browser Scripting Restrictions
+
+<a name="general-usage-special-considerations-for-cross-browser-scripting-restrictions"></a>
+<a name="sec-2-3"></a>
+### 2.3. Special Considerations for Cross-Browser Scripting Restrictions
 
 One thing about the RESTFul architecture is does not interoperate well with cross browser scripting restrictions
 in modern browsers.  Specifically, you are probably aware that you can not POST or PUT data via JSONP which means
@@ -125,12 +212,18 @@ Bright API.
 To alleviate this problem, we provide two "GET"-oriented aliases, gcreate and gupdate, that work identically to
 create and update, and are available via HTTP GET calls.
 
-## Quick Start
+
+<a name="quick-start"></a>
+<a name="sec-3"></a>
+## 3. Quick Start
 
 In the section we will quickly work throw the steps of connecting to the Bright API, authenticating, and generating
 API calls.
 
-### Prerequisite Data
+
+<a name="quick-start-prerequisite-data"></a>
+<a name="sec-3-1"></a>
+### 3.1. Prerequisite Data
 
 * Your Bright API URL.  This will be provided to you and is based on where your Bright server is installed, and what
 DNS entry is used to access it.  Don't know it?  Ask us at support@aura-software.com!
@@ -199,9 +292,17 @@ And the result:
   </scorm-cloud-courses>
 ```
 
-### Specifying a results format.
 
-#### Fetching an XML result
+<a name="quick-start-specifying-a-results-format"></a>
+<a name="sec-3-2"></a>
+### 3.2. Specifying a results format
+
+
+
+
+<a name="quick-start-specifying-a-results-format-fetching-an-xml-result"></a>
+<a name="sec-3-2-1"></a>
+#### 3.2.1. Fetching an XML result
 
 To fetch your results in XML format, append a '.xml' to the url, *before* the request parameters.  For example
 
@@ -209,7 +310,11 @@ To fetch your results in XML format, append a '.xml' to the url, *before* the re
 http://[BRIGHT URL]/bright/api/v2/course.xml
 ```
 
-#### Fetching a JSON result
+
+
+<a name="quick-start-specifying-a-results-format-fetching-an-json-result"></a>
+<a name="sec-3-2-2"></a>
+#### 3.2.2. Fetching an JSON result
 
 Let's say if you are using the API from Javascript, and you'd like your results back as JSON.  Easy, just
 rewrite the URL to use 'course.json' instead of 'course.xml'
@@ -248,13 +353,17 @@ And the result (formatted for readibility:
 ]
 ```
 
-## Access Modes
+
+
+<a name="access-modes"></a>
+<a name="sec-4"></a>
+## 4. Access Modes
 
 The Bright API can be accessed to two different ways:
 
-* [SCORMCloud App ID and Secret Key](##access-modes/via-scormcloud-app-id-and-secret-key)
+* [SCORMCloud App ID and Secret Key](#access-modes/via-scormcloud-app-id-and-secret-key)
 * [Bright API Key](#access-modes/via-bright-api-key)
-* [Brigh Realm GUID and Secret Key) (#access-modes/via-realm-guid-and-secret-key)
+* [Brigh Realm GUID and Secret Key](#access-modes-via-realm-id-and-secret-key)
 
 If you do not specify either the api key/secret key pair **OR** the Bright API key, you will
 receive HTTP code 401 (Unauthorized) in your response.
@@ -263,9 +372,15 @@ If you specify multiple authentication models, you will received a 501 (not impl
 
 If you specify an unknown SCORMCloud APPId and Secret key, you will receive a 500 (server error).
 
-### Via SCORMCloud App ID and Secret Key
+The Bright API can be accessed to two different ways:
 
-In all of the examples so far, we've been using direct access to the API using the SCORMCloud secret key and app id.  Generally speaking, this is fine
+
+
+<a name="access-modes-via-scormcloud-app-id-and-secret-key"></a>
+<a name="sec-4-1"></a>
+### 4.1. Via SCORMCloud App ID and Secret Key
+
+I using the SCORMCloud secret key and app id.  Generally speaking, this is fine
 for server side code that is secured and publicly accessible.  You should NEVER share the APP ID and secret key since this give complete access to all of
 your data.
 
@@ -278,7 +393,13 @@ RQIBAXU49I&sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 
 The above example will show all courses for the course provider defined by the SCORMCloud data (app id, secret key).
 
-### Via Bright API Key
+
+
+<a name="access-modes-via-bright-api-key"></a>
+<a name="sec-4-2"></a>
+### 4.2. Via Bright API Key
+
+The API Key interface allows for the creation of API keys for Bright Server.
 
 If you want to access the Bright API from some browser side Javascript, using the SCORMCloud or Bright Realm secret key is no good.  NEVER put your Secret Key into the browser via Javascript.
 
@@ -307,7 +428,11 @@ api_token=bdb273e9cdace9698c34d97070cb392d'
 ```
 This API token is now "bound" to the access level specified when the key was created.
 
-### Via Realm ID and Secret Key
+
+
+<a name="access-modes-via-realm-id-and-secret-key"></a>
+<a name="sec-4-3"></a>
+### 4.3. Via Realm ID and Secret Key
 
 Your Bright realm ID and secret key will be furnished to you by Bright support.  For many functions it is not necessary.  If you aren't working
 with invitations, creating user records on the fly, or using multiple course providers, you probably won't need a Realm key.  Note you do not
@@ -360,17 +485,57 @@ realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
 realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
 ```
 
-## API Modules
 
-Note not all RESTFul function are implemented.
 
-### Registration
+<a name="api-modules"></a>
+<a name="sec-5"></a>
+## 5. API Modules
 
-#### Method: index
+Note not all RESTFul functions are implemented.
+
+If you encounter an restful API method that is not implemented, please let us know at
+<a href="mailto:support@aura-software.com">support@aura-software.com</a>.
+
+
+
+
+
+
+
+<a name="api-modules-registration"></a>
+<a name="sec-5-1"></a>
+### 5.1. Registration
+
+
+
+
+<a name="api-modules-registration-determining-your-id-for-create-and-update"></a>
+<a name="sec-5-1-1"></a>
+#### 5.1.1. Determining your :id for create and update
+
+
+For registrations, Bright maintains a GUID that can be used as the :id field when using
+create, update, gcreate, or gupdate methods.
+
+If course provider is SCORMCloud, this will be identical to the SCORMCloud registration id.
+
+For other course providers, the GUID will be a Bright generated unique ID.
+
+
+
+
+<a name="api-modules-registration-method-index"></a>
+<a name="sec-5-1-2"></a>
+#### 5.1.2. Method: index
 
 The index method allows the api user to query registrations.
 
-#### HTTP Model:
+
+
+<a name="api-modules-registration-method-index-http-model"></a>
+<a name="sec-5-1-2-1"></a>
+##### 5.1.2.1. HTTP Model
+
 
 <table>
   <tr>
@@ -383,7 +548,10 @@ The index method allows the api user to query registrations.
   </tr>
 </table>
 
-##### Parameters
+
+<a name="api-modules-registration-method-index-parameters"></a>
+<a name="sec-5-1-2-2"></a>
+##### 5.1.2.2. parameters
 
 <table>
   <tr>
@@ -393,40 +561,83 @@ The index method allows the api user to query registrations.
   </tr>
    <tr>
      <td>__access method__</td>
-	 <td>api_key=[an api key created previously</td>
-	 <td>see [Access Modes](#access-modes)</td>
+	 <td>One of:
+<table>
+  <tr>
+    <td>api_key=xxxxxxxxxx [an api key created previously]</td>
   </tr>
   <tr>
-    <td>last_only</td>
+    <td>sc_app_id=XXXXXXXXX&sc_secret_key=YYYYYYYYYYY [a valid SCORMCloud app ID/secret key pair]</td>
+  </tr>
+  <tr>
+    <td>realm_guid=XXXXXXXXX&realm_secret_key=YYYYYYYYYY [a valid Bright Realm GUID/secret key pair]</td>
+  </tr>
+</table></td>  
+	 <td>see [Access Modes](#access-modes)</td>
+  </tr>
+
+  <tr>
+    <td><pre>last_only</pre></td>
 	<td>last_only=t</td>
-	<td>when included in the parameter string, we will return a single registration
-    record, that being the last one created.  Useful in cases where multiple registrations are found and only the most recent one
-should be returned.</td>
+	<td>when included in the parameter string, we will return a single registration record, that being the last one created.  Useful in cases where multiple registrations are found and only the most recent one should be returned.</td>
   </tr>	
+
   <tr>
-    <td>sc_course_id</td>
-  	<td>sc_course_id=a_scorm_cloud_course_id</td>
-	<td>filter registrations to the specified course id.</td>
+    <td><pre>sc_course_id</pre></td>
+	<td>sc_course_id=[a scorm cloud course id]</td>
+	<td>filter results to just this SCORMCloud course ID</td>
   </tr>	
+
   <tr>
-    <td>learner_id</td>
-  	<td>learner_id=jane.doe@me.com</td>
-	<td>filter registrations to the specified learner_id.</td>
+    <td><pre>learner_id</pre></td>
+	<td>learner_id=jane.doe@me.com</td>
+	<td>filter results to just this email address.</td>
   </tr>	
+
   <tr>
-    <td>refresh_if_launched</td>
+    <td><pre>refresh_if_launched</pre></td>
 	<td>refresh_if_launched=t</td>
 	<td>if the last launch date of this registration is newer than the last crawl date, this will force the record to recrawl prior to returning a result.</td>
   </tr>	
+
   <tr>
-    <td>crawl</td>
-  	<td>crawl=t</td>
+    <td><pre>crawl</pre></td>
+	<td>crawl=t</td>
 	<td>forces the registration to recrawl</td>
   </tr>	
+</table>
+
+<a name="api-modules-registration-method-index-http-codes"></a>
+<a name="sec-5-1-2-3"></a>
+##### 5.1.2.3. HTTP Codes
+
+<table>
+  <tr>	
+    <th>Code</th>
+	<th>Description</th>
+  </tr>
+
+  <tr>
+    <td>200</td>
+	<td>Success; items returned</td>
+  </tr>		 
+
+  <tr>
+    <td>401</td>
+	<td>If you do not specify a valid api_key, sc_app_id/sc_secret_key or realm_guid/realm_secret_key, you will receive HTTP</td>
+  </tr>		 
+
+  <tr>
+    <td>500</td>
+	<td>An illegal request, such as a malformed argument</td>
+  </tr>		 
 
 </table>
 
-##### Example
+
+<a name="api-modules-registration-method-index-example"></a>
+<a name="sec-5-1-2-4"></a>
+##### 5.1.2.4. Example
 
 ```
 curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/registration.json?
@@ -435,34 +646,25 @@ learner_id=bret@aura-software.com&
 sc_course_id=16-4fbd9ea698bce
 ```
 
-##### HTTP Codes
 
-<table>
-  <tr>	
-    <th>Code</th>
-	<th>Description</th>
-  </tr>
-  <tr>
-    <td>200</td>
-	<td>Success; items returned</td>
-  </tr>		 
-  <tr>
-    <td>401</td>
-	<td>If you do not specify a valid api_key, sc_app_id/sc_secret_key or realm_guid/realm_secret_key, you will receive HTTP error
-401 (unauthorized).</td>
-  </tr>		 
-  <tr>
-    <td>500</td>
-	<td>An illegal request, such as a malformed argument.</td>
-  </tr>		 
-</table>
+<a name="api-modules-registration-method-index-return-data"></a>
+<a name="sec-5-1-2-5"></a>
+##### 5.1.2.5. Return Data
 
-#### Method: create
 
-Creates a new scorm cloud registration.  Can be used in a single call that can be used to return an existing registration if
+
+<a name="api-modules-registration-method-create"></a>
+<a name="sec-5-1-3"></a>
+#### 5.1.3. Method: create
+
+Creates a new registration.  Can be used in a single call that can be used to return an existing registration if
 one exists, or create a new one if it does not.
 
-##### Parameters
+
+
+<a name="api-modules-registration-method-create-parameters"></a>
+<a name="sec-5-1-3-1"></a>
+##### 5.1.3.1. Parameters
 
 <table>
   <tr>
@@ -519,7 +721,10 @@ one exists, or create a new one if it does not.
   </tr>
 </table>
 
-##### HTTP Codes
+
+<a name="api-modules-registration-method-create-http-codes"></a>
+<a name="sec-5-1-3-2"></a>
+##### 5.1.3.2. HTTP Codes
 
 <table>
   <tr>	
@@ -563,7 +768,10 @@ Please note if you are using JSONP, since there are limited facillities to captu
 will return error code 200, with the error block above.  Otherwise you might find it difficult to correctly
 handle this error.
 
-##### Example
+
+<a name="api-modules-registration-method-create-example"></a>
+<a name="sec-5-1-3-3"></a>
+##### 5.1.3.3. Example
 
 For a successful request returned will be an XML or JSON document of the SCORMCloud registration.  Note this example is 
 using the gcreate alias (using an HTTP get).
@@ -609,13 +817,39 @@ dont_duplicate=t'
 ```
 
 
-### Course
+<a name="api-modules-course"></a>
+<a name="sec-5-2"></a>
+### 5.2. Course
 
-#### Method: Index
+
+
+
+
+<a name="api-modules-course-determining-your-id-for-create-and-update"></a>
+<a name="sec-5-2-1"></a>
+#### 5.2.1. Determining your :id for create and update
+
+
+For courses, Bright maintains a GUID that can be used as the :id field when using
+create, update, gcreate, or gupdate methods.
+
+If course provider is SCORMCloud, this will be identical to the SCORMCloud course id.
+
+For other course providers, the GUID will be a Bright generated unique ID.
+
+
+
+
+<a name="api-modules-course-method-index"></a>
+<a name="sec-5-2-2"></a>
+#### 5.2.2. Method: Index
 
 The index method allows the api user to fetch a course list.
 
-#### HTTP Model:
+
+<a name="api-modules-course-method-index-http-model"></a>
+<a name="sec-5-2-2-1"></a>
+##### 5.2.2.1. HTTP Model:
 
 <table>
   <tr>
@@ -628,7 +862,10 @@ The index method allows the api user to fetch a course list.
   </tr>
 </table>
 
-#### Parameters
+
+<a name="api-modules-course-method-index-parameters"></a>
+<a name="sec-5-2-2-2"></a>
+##### 5.2.2.2. Parameters
 
 <table>
   <tr>
@@ -643,7 +880,11 @@ The index method allows the api user to fetch a course list.
   </tr>
 </table>
 
-#### Example
+
+
+<a name="api-modules-course-method-index-example"></a>
+<a name="sec-5-2-2-3"></a>
+##### 5.2.2.3. Example
 
 ```
 curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?
@@ -651,7 +892,10 @@ learner_id=bret@aura-software.com&
 sc_course_id=16-4fbd9ea698bce
 ```
 
-#### HTTP Codes
+
+<a name="api-modules-course-method-index-http-codes"></a>
+<a name="sec-5-2-2-4"></a>
+##### 5.2.2.4. HTTP Codes
 
 <table>
   <tr>	
@@ -673,17 +917,27 @@ sc_course_id=16-4fbd9ea698bce
   </tr>		 
 </table>
 
-### Realm User
+
+<a name="api-modules-realm-user"></a>
+<a name="sec-5-3"></a>
+### 5.3. Realm User
 
 For learners, its generally not necessary to prepopulate realm users as creating a registration implicitly creates the user.
 
 It is possible to create them via the API and also manipulate their custom field as well.
 
-#### Method: create
+
+
+<a name="api-modules-realm-user-method-create"></a>
+<a name="sec-5-3-1"></a>
+#### 5.3.1. Method: create
 
 Creates a new realm user.  You must use a realm guid and secret key (or api key creating bound to a realm key) to create a realm user.
 
-##### Parameters
+
+<a name="api-modules-realm-user-method-create-parameters"></a>
+<a name="sec-5-3-1-1"></a>
+##### 5.3.1.1. Parameters
 
 <table>
   <tr>
@@ -715,7 +969,9 @@ Creates a new realm user.  You must use a realm guid and secret key (or api key 
 
 
 
-##### HTTP Codes
+<a name="api-modules-realm-user-method-create-http-codes"></a>
+<a name="sec-5-3-1-2"></a>
+##### 5.3.1.2. HTTP Codes
 
 <table>
   <tr>	
@@ -736,7 +992,10 @@ Creates a new realm user.  You must use a realm guid and secret key (or api key 
   </tr>		 
 </table>
 
-##### Example
+
+<a name="api-modules-realm-user-method-create-example"></a>
+<a name="sec-5-3-1-3"></a>
+##### 5.3.1.3. Example
 
 ```
 curl -w "%{http_code}" 
@@ -757,11 +1016,18 @@ custom=foo'
 201
 ```
 
-#### Method: update (gupdate)
+
+<a name="api-modules-realm-user-method-update-gupdate"></a>
+<a name="sec-5-3-2"></a>
+#### 5.3.2. Method: update (gupdate)
 
 Update a realm user.  You must use a realm guid and secret key (or api key creating bound to a realm key) to update a realm user.
 
-##### Parameters
+
+
+<a name="api-modules-realm-user-method-update-gupdate-parameters"></a>
+<a name="sec-5-3-2-1"></a>
+##### 5.3.2.1. Parameters
 
 <table>
   <tr>
@@ -787,7 +1053,10 @@ Update a realm user.  You must use a realm guid and secret key (or api key creat
 </table>
 
 
-##### HTTP Codes
+
+<a name="api-modules-realm-user-method-update-gupdate-http-codes"></a>
+<a name="sec-5-3-2-2"></a>
+##### 5.3.2.2. HTTP Codes
 
 <table>
   <tr>	
@@ -808,7 +1077,10 @@ Update a realm user.  You must use a realm guid and secret key (or api key creat
   </tr>		 
 </table>
 
-##### Example
+
+<a name="api-modules-realm-user-method-update-gupdate-example"></a>
+<a name="sec-5-3-2-3"></a>
+##### 5.3.2.3. Example
 
 ```
 curl -w "%{http_code}" 
@@ -819,13 +1091,26 @@ custom=foox'
 200
 ```
 
-### API Key
+
+<a name="api-modules-api-key"></a>
+<a name="sec-5-4"></a>
+### 5.4. API Key
 
 The API Key interface allows for the creation of API keys for Bright Server.
 
-#### Method: create
 
-#### HTTP Model:
+
+<a name="api-modules-api-key-method-create"></a>
+<a name="sec-5-4-1"></a>
+#### 5.4.1. Method: create
+
+
+Create a new API key.
+
+
+<a name="api-modules-api-key-method-create-http-model"></a>
+<a name="sec-5-4-1-1"></a>
+##### 5.4.1.1. HTTP Model:
 
 <table>
   <tr>
@@ -838,7 +1123,10 @@ The API Key interface allows for the creation of API keys for Bright Server.
   </tr>
 </table>
 
-##### Parameters
+
+<a name="api-modules-api-key-method-create-parameters"></a>
+<a name="sec-5-4-1-2"></a>
+##### 5.4.1.2. Parameters
 
 <table>
   <tr>
@@ -879,11 +1167,18 @@ Cloud application.</td>
    </tr>
 </table>		
 
-##### Return Data
+
+<a name="api-modules-api-key-method-create-return-data"></a>
+<a name="sec-5-4-1-3"></a>
+##### 5.4.1.3. Return Data
 
 Returns a JSON document of the new record.  HTTP Code is set to 201 (item created).
 
-##### Example:
+
+
+<a name="api-modules-api-key-method-create-example"></a>
+<a name="sec-5-4-1-4"></a>
+##### 5.4.1.4. Example:
 
 ```
 curl -w "%{http_code}" -d 'sc_app_id=RQIBAXU49I
@@ -908,7 +1203,11 @@ curl, this is accomplished with the **-d** flag.
 The '-w %{http_code}' piece allows you to view the returned HTTP code.
 
 
-##### HTTP Codes
+
+
+<a name="api-modules-api-key-method-create-http-codes"></a>
+<a name="sec-5-4-1-5"></a>
+##### 5.4.1.5. HTTP Codes
 
 <table>
   <tr>	
@@ -931,7 +1230,9 @@ The '-w %{http_code}' piece allows you to view the returned HTTP code.
 </table>
 
 
-## Debugging Errors
+<a name="debugging-errors"></a>
+<a name="sec-6"></a>
+## 6. Debugging Errors
 
 The Bright API, if it's not happy with its input, isn't going to give you that much information as to why.  It doesn't produce error messages
 other than HTTP codes.  This is primarily for security reasons.  Since we listen on public ports, we don't want people probing the api, and using
@@ -948,7 +1249,11 @@ We asked for a jsonc format, which of course doesn't exist.
 
 The only information you will get is an HTTP error code, in this case 406, 'Not Acceptable'.
 
-### Fetching HTTP Error Codes from a GET Request
+
+
+<a name="debugging-errors-fetching-http-error-codes-from-a-get-request"></a>
+<a name="sec-6-1"></a>
+### 6.1. Fetching HTTP Error Codes from a GET Request
 
 You can see the HTTP response code for a GET request in curl with the -I flag:
 
@@ -994,7 +1299,11 @@ curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
   Connection: Keep-Alive
 ```
 
-### Fetching HTTP Error Codes from a POST Request
+
+
+<a name="debugging-errors-fetching-http-error-codes-from-a-post-request"></a>
+<a name="sec-6-2"></a>
+### 6.2. Fetching HTTP Error Codes from a POST Request
 
 Since we use a RESTful API, some operations require a POST HTTP verb.  For whatever reason, the -I flag in curl
 will not show you the HTTP return code for a POST.
@@ -1008,7 +1317,11 @@ http://[BRIGHT URL]/bright/api/v2/api_key
 ```
 -w %{http_code} is the key part of that.
 
-### Debugging Authentication Errors
+
+
+<a name="debugging-errors-debugging-authentication-errors"></a>
+<a name="sec-6-3"></a>
+### 6.3. Debugging Authentication Errors
 
 If you receive a 401 code from the API, the server itself has recorded the authentication error in the server log.
 If you are completely stumped, this is the place to look.
@@ -1026,3 +1339,4 @@ Completed 401 Unauthorized in 2ms (ActiveRecord: 0.4ms)
 ```
 
 Definitely give us a shout if you can't get an API call to work at support@aura-software.com.
+
