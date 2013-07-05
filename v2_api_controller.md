@@ -18,16 +18,17 @@
 *	 5. [API Modules](#sec-5)
 	*	 5.1. [Registration](#sec-5-1)
 		*	 5.1.1. [Determining your :id for create and update](#sec-5-1-1)
-		*	 5.1.2. [Method: index](#sec-5-1-2)
-			*	 5.1.2.1. [HTTP Model](#sec-5-1-2-1)
-			*	 5.1.2.2. [parameters](#sec-5-1-2-2)
-			*	 5.1.2.3. [HTTP Codes](#sec-5-1-2-3)
-			*	 5.1.2.4. [Example](#sec-5-1-2-4)
-			*	 5.1.2.5. [Return Data](#sec-5-1-2-5)
-		*	 5.1.3. [Method: create](#sec-5-1-3)
-			*	 5.1.3.1. [Parameters](#sec-5-1-3-1)
-			*	 5.1.3.2. [HTTP Codes](#sec-5-1-3-2)
-			*	 5.1.3.3. [Example](#sec-5-1-3-3)
+		*	 5.1.2. [Format of return data](#sec-5-1-2)
+		*	 5.1.3. [Method: index](#sec-5-1-3)
+			*	 5.1.3.1. [HTTP Model](#sec-5-1-3-1)
+			*	 5.1.3.2. [parameters](#sec-5-1-3-2)
+			*	 5.1.3.3. [HTTP Codes](#sec-5-1-3-3)
+			*	 5.1.3.4. [Example](#sec-5-1-3-4)
+			*	 5.1.3.5. [Return Data](#sec-5-1-3-5)
+		*	 5.1.4. [Method: create](#sec-5-1-4)
+			*	 5.1.4.1. [Parameters](#sec-5-1-4-1)
+			*	 5.1.4.2. [HTTP Codes](#sec-5-1-4-2)
+			*	 5.1.4.3. [Example](#sec-5-1-4-3)
 	*	 5.2. [Course](#sec-5-2)
 		*	 5.2.1. [Determining your :id for create and update](#sec-5-2-1)
 		*	 5.2.2. [Method: Index](#sec-5-2-2)
@@ -36,14 +37,20 @@
 			*	 5.2.2.3. [Example](#sec-5-2-2-3)
 			*	 5.2.2.4. [HTTP Codes](#sec-5-2-2-4)
 	*	 5.3. [Realm User](#sec-5-3)
-		*	 5.3.1. [Method: create](#sec-5-3-1)
-			*	 5.3.1.1. [Parameters](#sec-5-3-1-1)
-			*	 5.3.1.2. [HTTP Codes](#sec-5-3-1-2)
-			*	 5.3.1.3. [Example](#sec-5-3-1-3)
-		*	 5.3.2. [Method: update (gupdate)](#sec-5-3-2)
+		*	 5.3.1. [Method: index](#sec-5-3-1)
+			*	 5.3.1.1. [HTTP Model](#sec-5-3-1-1)
+			*	 5.3.1.2. [parameters](#sec-5-3-1-2)
+			*	 5.3.1.3. [HTTP Codes](#sec-5-3-1-3)
+			*	 5.3.1.4. [Example](#sec-5-3-1-4)
+			*	 5.3.1.5. [Return Data](#sec-5-3-1-5)
+		*	 5.3.2. [Method: create](#sec-5-3-2)
 			*	 5.3.2.1. [Parameters](#sec-5-3-2-1)
 			*	 5.3.2.2. [HTTP Codes](#sec-5-3-2-2)
 			*	 5.3.2.3. [Example](#sec-5-3-2-3)
+		*	 5.3.3. [Method: update (gupdate)](#sec-5-3-3)
+			*	 5.3.3.1. [Parameters](#sec-5-3-3-1)
+			*	 5.3.3.2. [HTTP Codes](#sec-5-3-3-2)
+			*	 5.3.3.3. [Example](#sec-5-3-3-3)
 	*	 5.4. [API Key](#sec-5-4)
 		*	 5.4.1. [Method: create](#sec-5-4-1)
 			*	 5.4.1.1. [HTTP Model:](#sec-5-4-1-1)
@@ -524,17 +531,54 @@ For other course providers, the GUID will be a Bright generated unique ID.
 
 
 
-<a name="api-modules-registration-method-index"></a>
+<a name="api-modules-registration-format-of-return-data"></a>
 <a name="sec-5-1-2"></a>
-#### 5.1.2. Method: index
+#### 5.1.2. Format of return data
+
+<table>
+<tr><th>Field Name</th><th>Example Data</th><th>Description</th></tr>
+<tr><td>attempts</td><td>12</td><td>This is the # of attempts of the course, as recorded in SCORMCloud.</td></tr>
+<tr><td>complete</td><td>"complete"</td><td>This is the SCORM 'completion' status as recorded in SCORMCloud.</td></tr>
+<tr><td>course_result</td><td>"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\"><registrationreport format=\"course\" regid=\"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3-65a9ae1bd2f690a3bc789d6a9299b51e\" instanceid=\"0\"><complete>complete</complete><success>failed</success><totaltime>95</totaltime><score>0</score></registrationreport></rsp>"</td><td>The course_result is populated by SCORMCloud and is an XML document that shows the SCORM data collected for the registration.  For the format of the course result, see http://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult where resultsformat is "course".</td></tr>
+<tr><td>crawl_error_msg</td><td></td><td>If there is an error crawling this registration, the error message is listed here.</td></tr>
+<tr><td>crawl_status</td><td>"success"</td><td>Last crawl status for the registration.  Used internally in Bright.</td></tr>
+<tr><td>crawl_type</td><td>"course"</td><td>Shows the value of "resultsformat" that we used when crawling the registration result.  See also http://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult</td></tr>
+<tr><td>created_at</td><td>"2012-12-21T08:46:36Z"</td><td>The timestamp for the record when created in Bright.  This is not the time the record was created in SCORMCloud.</td></tr>
+<tr><td>custom</td><td>{my_custom_data: 1}</td><td>Any user defined custom JSON data.  This data can be used to build custom functionality into your Bright Embedder.</td></tr>
+<tr><td>full_result</td><td>null</td><td>If your crawler is running in 'full' mode, (see type), the full results document from http://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult is available here.</td></tr>
+<tr><td>id</td><td>5426</td><td>The Bright internal ID for this registration.</td></tr>
+<tr><td>last_crawled_at</td><td>"2012-12-26T14:27:20Z"</td><td>Datetime the record was last crawled.</td></tr>
+<tr><td>launched_at</td><td>"2012-12-26T14:27:00Z"</td><td>When this registration is launched from Bright, we maintain a local timestamp of the course launch here.  This timestamp can be used via the Bright API to force a recrawl of the registration (using the refresh_if_launched parameter.) See the Bright API document for more information.</td></tr>
+<tr><td>learner_id</td><td>"bret@aura-software.com"</td><td>Email address of the person to whom this registration belongs.</td></tr>
+<tr><td>number_of_crawl_errors</td><td>0</td><td>If there is crawl errors, this counter is incremented.</td></tr>
+<tr><td>sc_completed_at</td><td>null</td><td>This is the completed_at field as record in SCORMCloud.  SCORMCloud will set this field when it marks the course completed.</td></tr>
+<tr><td>sc_course_id</td><td>"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3"</td><td>The SCORMCloud Course ID.</td></tr>
+<tr><td>sc_created_at</td><td>null</td><td>The timestamp recorded in SCORMCloud as to when the registration was completed.  Typically you would use this when displaying data to the user instead of at, which is internal to Bright.</td></tr>
+<tr><td>sc_deleted</td><td>null</td><td>Will be set to a 1 if the registration has been deleted in SCORMCloud.</td></tr>
+<tr><td>sc_err_code</td><td>null</td><td>If we receive an error interacting with SCORMCloud for this registration, the error code will be recorded here.</td></tr>
+<tr><td>sc_error_message</td><td>null</td><td>Error message received from SCORMCloud when attempting to access this registration.</td></tr>
+<tr><td>sc_last_accessed_at</td><td>null</td><td>The timestamp recorded in SCORMCloud recording the last time the course was accessed.</td></tr>
+<tr><td>sc_registration_id</td><td>"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3-65a9ae1bd2f690a3bc789d6a9299b51e"</td><td>The SCORMCloud registration ID.</td></tr>
+<tr><td>score</td><td>0.0</td><td>This is the score for the registration recorded in SCORMCloud.</td></tr>
+<tr><td>scorm_cloud_app_id</td><td>10</td><td>An internal Bright variable corresponding to this SCORMCloud application.</td></tr>
+<tr><td>scorm_cloud_course_id</td><td>525</td><td>An internal Bright variable corresponding to this SCORMCloud course.</td></tr>
+<tr><td>success</td><td>"failed"</td><td>The value of the registration success field recorded in SCORMCloud.</td></tr>
+<tr><td>totaltime</td><td>95.0</td><td>The value of the totaltime field recorded in SCORMCloud.</td></tr>
+<tr><td>updated_at</td><td>"2012-12-26T14:27:20Z"</td><td>The last time this record was updated in Bright.</td></tr>
+</table>
+
+
+<a name="api-modules-registration-method-index"></a>
+<a name="sec-5-1-3"></a>
+#### 5.1.3. Method: index
 
 The index method allows the api user to query registrations.
 
 
 
 <a name="api-modules-registration-method-index-http-model"></a>
-<a name="sec-5-1-2-1"></a>
-##### 5.1.2.1. HTTP Model
+<a name="sec-5-1-3-1"></a>
+##### 5.1.3.1. HTTP Model
 
 
 <table>
@@ -550,8 +594,8 @@ The index method allows the api user to query registrations.
 
 
 <a name="api-modules-registration-method-index-parameters"></a>
-<a name="sec-5-1-2-2"></a>
-##### 5.1.2.2. parameters
+<a name="sec-5-1-3-2"></a>
+##### 5.1.3.2. parameters
 
 <table>
   <tr>
@@ -566,9 +610,11 @@ The index method allows the api user to query registrations.
   <tr>
     <td>api_key=xxxxxxxxxx [an api key created previously]</td>
   </tr>
+
   <tr>
     <td>sc_app_id=XXXXXXXXX&sc_secret_key=YYYYYYYYYYY [a valid SCORMCloud app ID/secret key pair]</td>
   </tr>
+
   <tr>
     <td>realm_guid=XXXXXXXXX&realm_secret_key=YYYYYYYYYY [a valid Bright Realm GUID/secret key pair]</td>
   </tr>
@@ -608,8 +654,8 @@ The index method allows the api user to query registrations.
 </table>
 
 <a name="api-modules-registration-method-index-http-codes"></a>
-<a name="sec-5-1-2-3"></a>
-##### 5.1.2.3. HTTP Codes
+<a name="sec-5-1-3-3"></a>
+##### 5.1.3.3. HTTP Codes
 
 <table>
   <tr>	
@@ -636,8 +682,8 @@ The index method allows the api user to query registrations.
 
 
 <a name="api-modules-registration-method-index-example"></a>
-<a name="sec-5-1-2-4"></a>
-##### 5.1.2.4. Example
+<a name="sec-5-1-3-4"></a>
+##### 5.1.3.4. Example
 
 ```
 curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/registration.json?
@@ -648,14 +694,14 @@ sc_course_id=16-4fbd9ea698bce
 
 
 <a name="api-modules-registration-method-index-return-data"></a>
-<a name="sec-5-1-2-5"></a>
-##### 5.1.2.5. Return Data
+<a name="sec-5-1-3-5"></a>
+##### 5.1.3.5. Return Data
 
 
 
 <a name="api-modules-registration-method-create"></a>
-<a name="sec-5-1-3"></a>
-#### 5.1.3. Method: create
+<a name="sec-5-1-4"></a>
+#### 5.1.4. Method: create
 
 Creates a new registration.  Can be used in a single call that can be used to return an existing registration if
 one exists, or create a new one if it does not.
@@ -663,8 +709,8 @@ one exists, or create a new one if it does not.
 
 
 <a name="api-modules-registration-method-create-parameters"></a>
-<a name="sec-5-1-3-1"></a>
-##### 5.1.3.1. Parameters
+<a name="sec-5-1-4-1"></a>
+##### 5.1.4.1. Parameters
 
 <table>
   <tr>
@@ -723,8 +769,8 @@ one exists, or create a new one if it does not.
 
 
 <a name="api-modules-registration-method-create-http-codes"></a>
-<a name="sec-5-1-3-2"></a>
-##### 5.1.3.2. HTTP Codes
+<a name="sec-5-1-4-2"></a>
+##### 5.1.4.2. HTTP Codes
 
 <table>
   <tr>	
@@ -770,8 +816,8 @@ handle this error.
 
 
 <a name="api-modules-registration-method-create-example"></a>
-<a name="sec-5-1-3-3"></a>
-##### 5.1.3.3. Example
+<a name="sec-5-1-4-3"></a>
+##### 5.1.4.3. Example
 
 For a successful request returned will be an XML or JSON document of the SCORMCloud registration.  Note this example is 
 using the gcreate alias (using an HTTP get).
@@ -928,16 +974,111 @@ It is possible to create them via the API and also manipulate their custom field
 
 
 
-<a name="api-modules-realm-user-method-create"></a>
+<a name="api-modules-realm-user-method-index"></a>
 <a name="sec-5-3-1"></a>
-#### 5.3.1. Method: create
+#### 5.3.1. Method: index
+
+
+
+<a name="api-modules-realm-user-method-index-http-model"></a>
+<a name="sec-5-3-1-1"></a>
+##### 5.3.1.1. HTTP Model
+
+
+<table>
+  <tr>
+    <th>Verb</th>
+	<th>Form</th>
+  </tr>	
+  <tr>
+    <td>GET</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/realm_user[.format]?param1=value1&...</td>
+  </tr>
+</table>
+
+
+<a name="api-modules-realm-user-method-index-parameters"></a>
+<a name="sec-5-3-1-2"></a>
+##### 5.3.1.2. parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Example</th>
+    <th>Notes</th>
+  </tr>
+   <tr>
+     <td>__access method__</td>
+	 <td>One of:
+<table>
+  <tr>
+    <td>api_key=xxxxxxxxxx [an api key created previously]</td>
+  </tr>
+
+  <tr>
+    <td>realm_guid=XXXXXXXXX&realm_secret_key=YYYYYYYYYY [a valid Bright Realm GUID/secret key pair]</td>
+  </tr>
+</table></td>  
+	 <td>see [Access Modes](#access-modes)</td>
+  </tr>
+
+  <tr>
+    <td><pre>users.email</pre></td>
+	<td>users.email=jane.doe@me.com</td>
+	<td>filter results to just this email address.</td>
+  </tr>	
+</table>
+
+<a name="api-modules-realm-user-method-index-http-codes"></a>
+<a name="sec-5-3-1-3"></a>
+##### 5.3.1.3. HTTP Codes
+
+<table>
+  <tr>	
+    <th>Code</th>
+	<th>Description</th>
+  </tr>
+
+  <tr>
+    <td>200</td>
+	<td>Success; items returned</td>
+  </tr>		 
+
+  <tr>
+    <td>401</td>
+	<td>If you do not specify a valid api_key, sc_app_id/sc_secret_key or realm_guid/realm_secret_key, you will receive HTTP 401</td>
+  </tr>		 
+
+  <tr>
+    <td>500</td>
+	<td>An illegal request, such as a malformed argument</td>
+  </tr>		 
+
+</table>
+
+
+<a name="api-modules-realm-user-method-index-example"></a>
+<a name="sec-5-3-1-4"></a>
+##### 5.3.1.4. Example
+
+
+
+<a name="api-modules-realm-user-method-index-return-data"></a>
+<a name="sec-5-3-1-5"></a>
+##### 5.3.1.5. Return Data
+
+
+
+<a name="api-modules-realm-user-method-create"></a>
+<a name="sec-5-3-2"></a>
+#### 5.3.2. Method: create
 
 Creates a new realm user.  You must use a realm guid and secret key (or api key creating bound to a realm key) to create a realm user.
 
 
 <a name="api-modules-realm-user-method-create-parameters"></a>
-<a name="sec-5-3-1-1"></a>
-##### 5.3.1.1. Parameters
+<a name="sec-5-3-2-1"></a>
+##### 5.3.2.1. Parameters
 
 <table>
   <tr>
@@ -970,8 +1111,8 @@ Creates a new realm user.  You must use a realm guid and secret key (or api key 
 
 
 <a name="api-modules-realm-user-method-create-http-codes"></a>
-<a name="sec-5-3-1-2"></a>
-##### 5.3.1.2. HTTP Codes
+<a name="sec-5-3-2-2"></a>
+##### 5.3.2.2. HTTP Codes
 
 <table>
   <tr>	
@@ -994,8 +1135,8 @@ Creates a new realm user.  You must use a realm guid and secret key (or api key 
 
 
 <a name="api-modules-realm-user-method-create-example"></a>
-<a name="sec-5-3-1-3"></a>
-##### 5.3.1.3. Example
+<a name="sec-5-3-2-3"></a>
+##### 5.3.2.3. Example
 
 ```
 curl -w "%{http_code}" 
@@ -1018,16 +1159,16 @@ custom=foo'
 
 
 <a name="api-modules-realm-user-method-update-gupdate"></a>
-<a name="sec-5-3-2"></a>
-#### 5.3.2. Method: update (gupdate)
+<a name="sec-5-3-3"></a>
+#### 5.3.3. Method: update (gupdate)
 
 Update a realm user.  You must use a realm guid and secret key (or api key creating bound to a realm key) to update a realm user.
 
 
 
 <a name="api-modules-realm-user-method-update-gupdate-parameters"></a>
-<a name="sec-5-3-2-1"></a>
-##### 5.3.2.1. Parameters
+<a name="sec-5-3-3-1"></a>
+##### 5.3.3.1. Parameters
 
 <table>
   <tr>
@@ -1055,8 +1196,8 @@ Update a realm user.  You must use a realm guid and secret key (or api key creat
 
 
 <a name="api-modules-realm-user-method-update-gupdate-http-codes"></a>
-<a name="sec-5-3-2-2"></a>
-##### 5.3.2.2. HTTP Codes
+<a name="sec-5-3-3-2"></a>
+##### 5.3.3.2. HTTP Codes
 
 <table>
   <tr>	
@@ -1079,8 +1220,8 @@ Update a realm user.  You must use a realm guid and secret key (or api key creat
 
 
 <a name="api-modules-realm-user-method-update-gupdate-example"></a>
-<a name="sec-5-3-2-3"></a>
-##### 5.3.2.3. Example
+<a name="sec-5-3-3-3"></a>
+##### 5.3.3.3. Example
 
 ```
 curl -w "%{http_code}" 
