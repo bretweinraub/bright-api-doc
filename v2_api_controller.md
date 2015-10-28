@@ -354,7 +354,7 @@ And the result (formatted for readibility:
 	 "created_at":"2012-11-26T12:10:44Z",
 	 "id":187,
 	 "registrations":2,
-	 "sc_course_id":"1-5098f07394cbd",
+	 "course_guid":"1-5098f07394cbd",
 	 "course_provider_id":6,
 	 "size":1599415,
 	 "title":"Proktologie",
@@ -365,7 +365,7 @@ And the result (formatted for readibility:
 	 "created_at":"2012-11-29T16:11:53Z",
 	 "id":200,
 	 "registrations":1,
-	 "sc_course_id":"1-50b63e903dd43",
+	 "course_guid":"1-50b63e903dd43",
 	 "course_provider_id":6,
 	 "size":2211931,
 	 "title":"Proktologie",
@@ -734,7 +734,7 @@ The index method allows the api user to fetch a course list.
 ```
 curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?
 learner_id=bret@aura-software.com&
-sc_course_id=16-4fbd9ea698bce
+course_guid=16-4fbd9ea698bce
 ```
 
 
@@ -928,7 +928,7 @@ Creates a new realm user.  You must use a realm guid and secret key (or api key 
   </tr>		 
   <tr>
     <td>500</td>
-	<td>If you specify a user_email that is not valid, or a valid sc_course_id, you will receive a 500 server error.</td>
+	<td>If you specify a user_email that is not valid, or a valid course_guid, you will receive a 500 server error.</td>
   </tr>		 
 </table>
 
@@ -1074,14 +1074,14 @@ For other course providers, the GUID will be a Bright generated unique ID.
 <tr><td>launched_at</td><td>"2012-12-26T14:27:00Z"</td><td>When this registration is launched from Bright, we maintain a local timestamp of the course launch here.  This timestamp can be used via the Bright API to force a recrawl of the registration (using the refresh_if_launched parameter.) See the Bright API document for more information.</td></tr>
 <tr><td>learner_id</td><td>"bret@aura-software.com"</td><td>Email address of the person to whom this registration belongs.</td></tr>
 <tr><td>number_of_crawl_errors</td><td>0</td><td>If there is crawl errors, this counter is incremented.</td></tr>
-<tr><td>sc_completed_at</td><td>null</td><td>This is the completed_at field as record in SCORMCloud.  SCORMCloud will set this field when it marks the course completed.</td></tr>
-<tr><td>sc_course_id</td><td>"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3"</td><td>The SCORMCloud Course ID.</td></tr>
-<tr><td>sc_created_at</td><td>null</td><td>The timestamp recorded in SCORMCloud as to when the registration was completed.  Typically you would use this when displaying data to the user instead of at, which is internal to Bright.</td></tr>
-<tr><td>sc_deleted</td><td>null</td><td>Will be set to a 1 if the registration has been deleted in SCORMCloud.</td></tr>
-<tr><td>sc_err_code</td><td>null</td><td>If we receive an error interacting with SCORMCloud for this registration, the error code will be recorded here.</td></tr>
-<tr><td>sc_error_message</td><td>null</td><td>Error message received from SCORMCloud when attempting to access this registration.</td></tr>
-<tr><td>sc_last_accessed_at</td><td>null</td><td>The timestamp recorded in SCORMCloud recording the last time the course was accessed.</td></tr>
-<tr><td>sc_registration_id</td><td>"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3-65a9ae1bd2f690a3bc789d6a9299b51e"</td><td>The SCORMCloud registration ID.</td></tr>
+<tr><td>provider_completed_at</td><td>null</td><td>This is the completed_at field as record in SCORMCloud.  SCORMCloud will set this field when it marks the course completed.</td></tr>
+<tr><td>course_guid</td><td>"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3"</td><td>The SCORMCloud Course ID.</td></tr>
+<tr><td>provider_created_at</td><td>null</td><td>The timestamp recorded in SCORMCloud as to when the registration was completed.  Typically you would use this when displaying data to the user instead of at, which is internal to Bright.</td></tr>
+<tr><td>deleted</td><td>null</td><td>Will be set to a 1 if the registration has been deleted in SCORMCloud.</td></tr>
+<tr><td>provider_errcode</td><td>null</td><td>If we receive an error interacting with SCORMCloud for this registration, the error code will be recorded here.</td></tr>
+<tr><td>provider_error_message</td><td>null</td><td>Error message received from SCORMCloud when attempting to access this registration.</td></tr>
+<tr><td>provider_accessed_at</td><td>null</td><td>The timestamp recorded in SCORMCloud recording the last time the course was accessed.</td></tr>
+<tr><td>registration_guid</td><td>"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3-65a9ae1bd2f690a3bc789d6a9299b51e"</td><td>The SCORMCloud registration ID.</td></tr>
 <tr><td>score</td><td>0.0</td><td>This is the score for the registration recorded in SCORMCloud.</td></tr>
 <tr><td>scorm_cloud_app_id</td><td>10</td><td>An internal Bright variable corresponding to this SCORMCloud application.</td></tr>
 <tr><td>scorm_cloud_course_id</td><td>525</td><td>An internal Bright variable corresponding to this SCORMCloud course.</td></tr>
@@ -1152,8 +1152,8 @@ The index method allows the api user to query registrations.
   </tr>	
 
   <tr>
-    <td><pre>sc_course_id</pre></td>
-	<td>sc_course_id=[a scorm cloud course id]</td>
+    <td><pre>course_guid</pre></td>
+	<td>course_guid=[a scorm cloud course id]</td>
 	<td>filter results to just this SCORMCloud course ID</td>
   </tr>	
 
@@ -1212,7 +1212,7 @@ The index method allows the api user to query registrations.
 curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/registration.json?
 api_key=2a84a6ddb229c13bc945874b69fab8ba&
 learner_id=bret@aura-software.com&
-sc_course_id=16-4fbd9ea698bce
+course_guid=16-4fbd9ea698bce
 ```
 
 
@@ -1259,8 +1259,8 @@ one exists, or create a new one if it does not.
   </tr>
 
   <tr>
-   <td>sc_course_id</td>
-   <td>sc_course_id=16-4fbd9ea698bce</td>
+   <td>course_guid</td>
+   <td>course_guid=16-4fbd9ea698bce</td>
    <td>SCORMCloud course ID (required)</td>
   </tr>
   <tr>
@@ -1315,12 +1315,12 @@ one exists, or create a new one if it does not.
   </tr>		 
   <tr>
     <td>404</td>
-	<td>You provided a sc_course_id that can't be found for this access method, or none at all.  If you are using the create (and not gcreate alias),
+	<td>You provided a course_guid that can't be found for this access method, or none at all.  If you are using the create (and not gcreate alias),
 make sure you are posting the data correctly.</td>
   </tr>		 
   <tr>
     <td>500</td>
-	<td>If you specify a user_email that is not valid, or a valid sc_course_id, you will receive a 500 server error.</td>
+	<td>If you specify a user_email that is not valid, or a valid course_guid, you will receive a 500 server error.</td>
   </tr>		 
 </table>
 
@@ -1351,7 +1351,7 @@ curl -w "%{http_code}"
 'http://localhost:3000/bright/api/v2/registration/gcreate.json?
 api_key=2a84a6ddb229c13bc945874b69fab8ba&
 learner_id=bret@aura-software.com&
-sc_course_id=16-4fbd9ea698bce&
+course_guid=16-4fbd9ea698bce&
 sc_app_id=XXXYYYYZZZ&
 sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N&
 dont_duplicate=t'
@@ -1368,14 +1368,14 @@ dont_duplicate=t'
  "last_crawled_at"=>"2012-12-12T16:33:33Z",
  "learner_id"=>"bret@aura-software.com",
  "number_of_crawl_errors"=>0,
- "sc_completed_at"=>nil,
- "sc_course_id"=>"20-NSFoundationPostTrainingQuiz",
- "sc_created_at"=>"2012-12-12T16:32:04Z",
- "sc_deleted"=>nil,
- "sc_err_code"=>nil,
- "sc_error_message"=>nil,
- "sc_last_accessed_at"=>nil,
- "sc_registration_id"=>"79c0dd35-139-048258-16e-9a1561b0a85d",
+ "provider_completed_at"=>nil,
+ "course_guid"=>"20-NSFoundationPostTrainingQuiz",
+ "provider_created_at"=>"2012-12-12T16:32:04Z",
+ "deleted"=>nil,
+ "provider_errcode"=>nil,
+ "provider_error_message"=>nil,
+ "provider_accessed_at"=>nil,
+ "registration_guid"=>"79c0dd35-139-048258-16e-9a1561b0a85d",
  "score"=>99.2,
  "course_provider_id"=>10,
  "course_id"=>509,
@@ -1647,7 +1647,7 @@ An error like this should exists:
 
 ```shell
 Processing by ScormCloudCourseController#index as JSON
-  Parameters: {"api_key"=>"bogus!", "sc_course_id"=>"course1"}
+  Parameters: {"api_key"=>"bogus!", "course_guid"=>"course1"}
   [1m[36mApiKey Load (0.4ms)[0m  [1mSELECT "api_keys".* FROM 
   "api_keys" WHERE "api_keys"."access_token" = 'bogus!' LIMIT 1[0m
 Unauthorized: api token not found
