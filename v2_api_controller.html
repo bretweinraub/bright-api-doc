@@ -487,7 +487,7 @@ sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'</span></code></pre>
      "<span class="attribute">created_at</span>":<span class="value"><span class="string">"2012-11-26T12:10:44Z"</span></span>,
      "<span class="attribute">id</span>":<span class="value"><span class="number">187</span></span>,
      "<span class="attribute">registrations</span>":<span class="value"><span class="number">2</span></span>,
-     "<span class="attribute">sc_course_id</span>":<span class="value"><span class="string">"1-5098f07394cbd"</span></span>,
+     "<span class="attribute">course_guid</span>":<span class="value"><span class="string">"1-5098f07394cbd"</span></span>,
      "<span class="attribute">course_provider_id</span>":<span class="value"><span class="number">6</span></span>,
      "<span class="attribute">size</span>":<span class="value"><span class="number">1599415</span></span>,
      "<span class="attribute">title</span>":<span class="value"><span class="string">"Proktologie"</span></span>,
@@ -498,7 +498,7 @@ sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'</span></code></pre>
      "<span class="attribute">created_at</span>":<span class="value"><span class="string">"2012-11-29T16:11:53Z"</span></span>,
      "<span class="attribute">id</span>":<span class="value"><span class="number">200</span></span>,
      "<span class="attribute">registrations</span>":<span class="value"><span class="number">1</span></span>,
-     "<span class="attribute">sc_course_id</span>":<span class="value"><span class="string">"1-50b63e903dd43"</span></span>,
+     "<span class="attribute">course_guid</span>":<span class="value"><span class="string">"1-50b63e903dd43"</span></span>,
      "<span class="attribute">course_provider_id</span>":<span class="value"><span class="number">6</span></span>,
      "<span class="attribute">size</span>":<span class="value"><span class="number">2211931</span></span>,
      "<span class="attribute">title</span>":<span class="value"><span class="string">"Proktologie"</span></span>,
@@ -754,7 +754,7 @@ create, update, gcreate, or gupdate methods.</p>
 <h5>5.2.2.3. Example</h5>
 <pre><code><span class="title">curl</span> -w <span class="string">"%{http_code}"</span> <span class="string">'http://localhost:3000/bright/api/v2/course.json?
 learner_id=bret<span class="variable">@aura</span>-software.com&amp;
-sc_course_id=16-4fbd9ea698bce</code></pre>
+course_guid=16-4fbd9ea698bce</code></pre>
 <p><a name="api-modules-course-method-index-http-codes"></a>
 <a name="sec-5-2-2-4"></a></p>
 <h5>5.2.2.4. HTTP Codes</h5>
@@ -906,7 +906,7 @@ sc_course_id=16-4fbd9ea698bce</code></pre>
     <td>Item already exists, not modified.</td>
   </tr><br>  <tr>
     <td>500</td>
-    <td>If you specify a user_email that is not valid, or a valid sc_course_id, you will receive a 500 server error.</td>
+    <td>If you specify a user_email that is not valid, or a valid course_guid, you will receive a 500 server error.</td>
   </tr><br></table>
 
 
@@ -1018,14 +1018,14 @@ create, update, gcreate, or gupdate methods.</p>
 <tr><td>launched_at</td><td>&quot;2012-12-26T14:27:00Z&quot;</td><td>When this registration is launched from Bright, we maintain a local timestamp of the course launch here.  This timestamp can be used via the Bright API to force a recrawl of the registration (using the refresh_if_launched parameter.) See the Bright API document for more information.</td></tr>
 <tr><td>learner_id</td><td>&quot;bret@aura-software.com&quot;</td><td>Email address of the person to whom this registration belongs.</td></tr>
 <tr><td>number_of_crawl_errors</td><td>0</td><td>If there is crawl errors, this counter is incremented.</td></tr>
-<tr><td>sc_completed_at</td><td>null</td><td>This is the completed_at field as record in SCORMCloud.  SCORMCloud will set this field when it marks the course completed.</td></tr>
-<tr><td>sc_course_id</td><td>&quot;1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3&quot;</td><td>The SCORMCloud Course ID.</td></tr>
-<tr><td>sc_created_at</td><td>null</td><td>The timestamp recorded in SCORMCloud as to when the registration was completed.  Typically you would use this when displaying data to the user instead of at, which is internal to Bright.</td></tr>
-<tr><td>sc_deleted</td><td>null</td><td>Will be set to a 1 if the registration has been deleted in SCORMCloud.</td></tr>
-<tr><td>sc_err_code</td><td>null</td><td>If we receive an error interacting with SCORMCloud for this registration, the error code will be recorded here.</td></tr>
-<tr><td>sc_error_message</td><td>null</td><td>Error message received from SCORMCloud when attempting to access this registration.</td></tr>
-<tr><td>sc_last_accessed_at</td><td>null</td><td>The timestamp recorded in SCORMCloud recording the last time the course was accessed.</td></tr>
-<tr><td>sc_registration_id</td><td>&quot;1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3-65a9ae1bd2f690a3bc789d6a9299b51e&quot;</td><td>The SCORMCloud registration ID.</td></tr>
+<tr><td>provider_completed_at</td><td>null</td><td>This is the completed_at field as record in SCORMCloud.  SCORMCloud will set this field when it marks the course completed.</td></tr>
+<tr><td>course_guid</td><td>&quot;1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3&quot;</td><td>The SCORMCloud Course ID.</td></tr>
+<tr><td>provider_created_at</td><td>null</td><td>The timestamp recorded in SCORMCloud as to when the registration was completed.  Typically you would use this when displaying data to the user instead of at, which is internal to Bright.</td></tr>
+<tr><td>deleted</td><td>null</td><td>Will be set to a 1 if the registration has been deleted in the course provider (SCORMCloud).</td></tr>
+<tr><td>provider_errcode</td><td>null</td><td>If we receive an error interacting with SCORMCloud for this registration, the error code will be recorded here.</td></tr>
+<tr><td>provider_error_message</td><td>null</td><td>Error message received from SCORMCloud when attempting to access this registration.</td></tr>
+<tr><td>provider_accessed_at</td><td>null</td><td>The timestamp recorded in SCORMCloud recording the last time the course was accessed.</td></tr>
+<tr><td>registration_guid</td><td>&quot;1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3-65a9ae1bd2f690a3bc789d6a9299b51e&quot;</td><td>The SCORMCloud registration ID.</td></tr>
 <tr><td>score</td><td>0.0</td><td>This is the score for the registration recorded in SCORMCloud.</td></tr>
 <tr><td>scorm_cloud_app_id</td><td>10</td><td>An internal Bright variable corresponding to this SCORMCloud application.</td></tr>
 <tr><td>scorm_cloud_course_id</td><td>525</td><td>An internal Bright variable corresponding to this SCORMCloud course.</td></tr>
@@ -1086,8 +1086,8 @@ create, update, gcreate, or gupdate methods.</p>
     <td>when included in the parameter string, we will return a single registration record, that being the last one created.  Useful in cases where multiple registrations are found and only the most recent one should be returned.</td>
   </tr><br>
   <tr>
-    <td><pre>sc_course_id</pre></td>
-    <td>sc_course_id=[a scorm cloud course id]</td>
+    <td><pre>course_guid</pre></td>
+    <td>course_guid=[a scorm cloud course id]</td>
     <td>filter results to just this SCORMCloud course ID</td>
   </tr><br>
   <tr>
@@ -1135,7 +1135,7 @@ create, update, gcreate, or gupdate methods.</p>
 <pre><code><span class="title">curl</span> -w <span class="string">"%{http_code}"</span> <span class="string">'http://localhost:3000/bright/api/v2/registration.json?
 api_key=2a84a6ddb229c13bc945874b69fab8ba&amp;
 learner_id=bret<span class="variable">@aura</span>-software.com&amp;
-sc_course_id=16-4fbd9ea698bce</code></pre>
+course_guid=16-4fbd9ea698bce</code></pre>
 <p><a name="api-modules-registration-method-index-return-data"></a>
 <a name="sec-5-4-3-5"></a></p>
 <h5>5.4.3.5. Return Data</h5>
@@ -1171,8 +1171,8 @@ one exists, or create a new one if it does not.</p>
   </tr>
 
   <tr>
-   <td>sc_course_id</td>
-   <td>sc_course_id=16-4fbd9ea698bce</td>
+   <td>course_guid</td>
+   <td>course_guid=16-4fbd9ea698bce</td>
    <td>SCORMCloud course ID (required)</td>
   </tr>
   <tr>
@@ -1222,11 +1222,11 @@ one exists, or create a new one if it does not.</p>
     <td>In some cases an additional error message is returned (see below).</td>
   </tr><br>  <tr>
     <td>404</td>
-    <td>You provided a sc_course_id that can&#39;t be found for this access method, or none at all.  If you are using the create (and not gcreate alias),
+    <td>You provided a course_guid that can&#39;t be found for this access method, or none at all.  If you are using the create (and not gcreate alias),
 make sure you are posting the data correctly.</td>
   </tr><br>  <tr>
     <td>500</td>
-    <td>If you specify a user_email that is not valid, or a valid sc_course_id, you will receive a 500 server error.</td>
+    <td>If you specify a user_email that is not valid, or a valid course_guid, you will receive a 500 server error.</td>
   </tr><br></table>
 
 <p>In case of errors accessing the SCORMCloud API, a message including the error is returned (error code 403):</p>
@@ -1248,7 +1248,7 @@ curl -w <span class="string">"%{http_code}"</span>
 <span class="string">'http://localhost:3000/bright/api/v2/registration/gcreate.json?
 api_key=2a84a6ddb229c13bc945874b69fab8ba&amp;
 learner_id=bret@aura-software.com&amp;
-sc_course_id=16-4fbd9ea698bce&amp;
+course_guid=16-4fbd9ea698bce&amp;
 sc_app_id=XXXYYYYZZZ&amp;
 sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N&amp;
 dont_duplicate=t'</span>
@@ -1265,14 +1265,14 @@ dont_duplicate=t'</span>
  <span class="string">"last_crawled_at"</span>=&gt;<span class="string">"2012-12-12T16:33:33Z"</span>,
  <span class="string">"learner_id"</span>=&gt;<span class="string">"bret@aura-software.com"</span>,
  <span class="string">"number_of_crawl_errors"</span>=&gt;<span class="number">0</span>,
- <span class="string">"sc_completed_at"</span>=&gt;nil,
- <span class="string">"sc_course_id"</span>=&gt;<span class="string">"20-NSFoundationPostTrainingQuiz"</span>,
- <span class="string">"sc_created_at"</span>=&gt;<span class="string">"2012-12-12T16:32:04Z"</span>,
- <span class="string">"sc_deleted"</span>=&gt;nil,
- <span class="string">"sc_err_code"</span>=&gt;nil,
- <span class="string">"sc_error_message"</span>=&gt;nil,
- <span class="string">"sc_last_accessed_at"</span>=&gt;nil,
- <span class="string">"sc_registration_id"</span>=&gt;<span class="string">"79c0dd35-139-048258-16e-9a1561b0a85d"</span>,
+ <span class="string">"provider_completed_at"</span>=&gt;nil,
+ <span class="string">"course_guid"</span>=&gt;<span class="string">"20-NSFoundationPostTrainingQuiz"</span>,
+ <span class="string">"provider_created_at"</span>=&gt;<span class="string">"2012-12-12T16:32:04Z"</span>,
+ <span class="string">"deleted"</span>=&gt;nil,
+ <span class="string">"provider_errcode"</span>=&gt;nil,
+ <span class="string">"provider_error_message"</span>=&gt;nil,
+ <span class="string">"provider_accessed_at"</span>=&gt;nil,
+ <span class="string">"registration_guid"</span>=&gt;<span class="string">"79c0dd35-139-048258-16e-9a1561b0a85d"</span>,
  <span class="string">"score"</span>=&gt;<span class="number">99.2</span>,
  <span class="string">"course_provider_id"</span>=&gt;<span class="number">10</span>,
  <span class="string">"course_id"</span>=&gt;<span class="number">509</span>,
@@ -1456,7 +1456,7 @@ nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N&amp;user_email=newuser<span class="vari
 If you are completely stumped, this is the place to look.</p>
 <p>An error like this should exists:</p>
 <pre><code class="lang-shell">Processing by ScormCloudCourseController#index as JSON
-  Parameters: {"api_key"=&gt;"bogus!", "sc_course_id"=&gt;"course1"}
+  Parameters: {"api_key"=&gt;"bogus!", "course_guid"=&gt;"course1"}
   [1m[36mApiKey <span class="operator"><span class="keyword">Load</span> (<span class="number">0.4</span>ms)[<span class="number">0</span>m  [<span class="number">1</span>mSELECT <span class="string">"api_keys"</span>.* <span class="keyword">FROM</span> 
   <span class="string">"api_keys"</span> <span class="keyword">WHERE</span> <span class="string">"api_keys"</span>.<span class="string">"access_token"</span> = <span class="string">'bogus!'</span> LIMIT <span class="number">1</span>[<span class="number">0</span>m
 Unauthorized: api token <span class="keyword">not</span> <span class="keyword">found</span>
