@@ -723,6 +723,12 @@ The index method allows the api user to fetch a course list.
 	 <td>api_key=[an api key created previously]</td>
 	 <td>see [Access Modes](#access-modes)</td>
   </tr>
+   <tr>
+     <td>course_guid</td>
+	 <td>For a SCORMCloud course, this will match the course ID in scormcloud.</td>
+	 <td>See also <a href="http://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.</a></td>
+  </tr>
+
 </table>
 
 
@@ -732,9 +738,7 @@ The index method allows the api user to fetch a course list.
 ##### 5.2.2.3. Example
 
 ```
-curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?
-learner_id=bret@aura-software.com&
-course_guid=16-4fbd9ea698bce
+curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?course_guid=16-4fbd9ea698bce
 ```
 
 
