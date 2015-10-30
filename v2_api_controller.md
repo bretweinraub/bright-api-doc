@@ -1434,7 +1434,7 @@ dont_duplicate=t'
   </tr>	
   <tr>
     <td>GET</td>
-    <td>(http|https)://BRIGHT_URL/bright/api/v2/?name=[query-name]&...</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2//run?name=[query-name]&...</td>
   </tr>
 </table>
 
