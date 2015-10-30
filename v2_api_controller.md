@@ -58,21 +58,28 @@
 			*	 5.4.4.1. [Parameters](#sec-5-4-4-1)
 			*	 5.4.4.2. [HTTP Codes](#sec-5-4-4-2)
 			*	 5.4.4.3. [Example](#sec-5-4-4-3)
-	*	 5.5. [Template](#sec-5-5)
-		*	 5.5.1. [Method: index](#sec-5-5-1)
+	*	 5.5. [StoredQuery](#sec-5-5)
+		*	 5.5.1. [Method: run](#sec-5-5-1)
 			*	 5.5.1.1. [HTTP Model](#sec-5-5-1-1)
 			*	 5.5.1.2. [parameters](#sec-5-5-1-2)
 			*	 5.5.1.3. [HTTP Codes](#sec-5-5-1-3)
 			*	 5.5.1.4. [Example](#sec-5-5-1-4)
 			*	 5.5.1.5. [Return Data](#sec-5-5-1-5)
-		*	 5.5.2. [Method: create](#sec-5-5-2)
-			*	 5.5.2.1. [Parameters](#sec-5-5-2-1)
-			*	 5.5.2.2. [HTTP Codes](#sec-5-5-2-2)
-			*	 5.5.2.3. [Example](#sec-5-5-2-3)
-		*	 5.5.3. [Method: update (gupdate)](#sec-5-5-3)
-			*	 5.5.3.1. [Parameters](#sec-5-5-3-1)
-			*	 5.5.3.2. [HTTP Codes](#sec-5-5-3-2)
-			*	 5.5.3.3. [Example](#sec-5-5-3-3)
+	*	 5.6. [Template](#sec-5-6)
+		*	 5.6.1. [Method: index](#sec-5-6-1)
+			*	 5.6.1.1. [HTTP Model](#sec-5-6-1-1)
+			*	 5.6.1.2. [parameters](#sec-5-6-1-2)
+			*	 5.6.1.3. [HTTP Codes](#sec-5-6-1-3)
+			*	 5.6.1.4. [Example](#sec-5-6-1-4)
+			*	 5.6.1.5. [Return Data](#sec-5-6-1-5)
+		*	 5.6.2. [Method: create](#sec-5-6-2)
+			*	 5.6.2.1. [Parameters](#sec-5-6-2-1)
+			*	 5.6.2.2. [HTTP Codes](#sec-5-6-2-2)
+			*	 5.6.2.3. [Example](#sec-5-6-2-3)
+		*	 5.6.3. [Method: update (gupdate)](#sec-5-6-3)
+			*	 5.6.3.1. [Parameters](#sec-5-6-3-1)
+			*	 5.6.3.2. [HTTP Codes](#sec-5-6-3-2)
+			*	 5.6.3.3. [Example](#sec-5-6-3-3)
 *	 6. [Debugging Errors](#sec-6)
 	*	 6.1. [Fetching HTTP Error Codes from a GET Request](#sec-6-1)
 	*	 6.2. [Fetching HTTP Error Codes from a POST Request](#sec-6-2)
@@ -1403,21 +1410,137 @@ dont_duplicate=t'
 ```
 
 
-<a name="api-modules-template"></a>
+<a name="api-modules-storedquery"></a>
 <a name="sec-5-5"></a>
-### 5.5. Template
+### 5.5. StoredQuery
+
+
+
+<a name="api-modules-storedquery-method-run"></a>
+<a name="sec-5-5-1"></a>
+#### 5.5.1. Method: run
+
+
+
+<a name="api-modules-storedquery-method-run-http-model"></a>
+<a name="sec-5-5-1-1"></a>
+##### 5.5.1.1. HTTP Model
+
+
+<table>
+  <tr>
+    <th>Verb</th>
+	<th>Form</th>
+  </tr>	
+  <tr>
+    <td>GET</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/?name=[query-name]&...</td>
+  </tr>
+</table>
+
+
+<a name="api-modules-storedquery-method-run-parameters"></a>
+<a name="sec-5-5-1-2"></a>
+##### 5.5.1.2. parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Example</th>
+    <th>Notes</th>
+  </tr>
+   <tr>
+     <td>__access method__</td>
+	 <td>One of:
+<table>
+  <tr>
+    <td>api_key=xxxxxxxxxx [an api key created previously]</td>
+  </tr>
+
+  <tr>
+    <td>sc_app_id=XXXXXXXXX&sc_secret_key=YYYYYYYYYYY [a valid SCORMCloud app ID/secret key pair]</td>
+  </tr>
+
+  <tr>
+    <td>realm_guid=XXXXXXXXX&realm_secret_key=YYYYYYYYYY [a valid Bright Realm GUID/secret key pair]</td>
+  </tr>
+</table></td>  
+	 <td>see [Access Modes](#access-modes)</td>
+  </tr>
+
+  <tr>
+    <td><pre>name</pre></td>
+	<td>name=name=myStoredQuery</td>
+	<td>this is the query to run.  Note for "builtin" queries, these are available for all realms and you will need to set query_scope=bright</td>
+  </tr>	
+
+  <tr>
+    <td><pre>query_scope</pre></td>
+	<td>query_scope=query_scope=bright</td>
+	<td>when set to "bright", the indication is this stored query is generic, not custom to your course provider or realm</td>
+  </tr>	
+</table>
+
+<a name="api-modules-storedquery-method-run-http-codes"></a>
+<a name="sec-5-5-1-3"></a>
+##### 5.5.1.3. HTTP Codes
+
+<table>
+  <tr>	
+    <th>Code</th>
+	<th>Description</th>
+  </tr>
+
+  <tr>
+    <td>200</td>
+	<td>Success; items returned</td>
+  </tr>		 
+
+  <tr>
+    <td>401</td>
+	<td>If you do not specify a valid api_key, sc_app_id/sc_secret_key or realm_guid/realm_secret_key, you will receive HTTP 401</td>
+  </tr>		 
+
+  <tr>
+    <td>404</td>
+	<td>A typical result when no stored query is found for your name= paramter</td>
+  </tr>		 
+
+  <tr>
+    <td>500</td>
+	<td>An illegal request, such as a malformed argument</td>
+  </tr>		 
+
+</table>
+
+
+<a name="api-modules-storedquery-method-run-example"></a>
+<a name="sec-5-5-1-4"></a>
+##### 5.5.1.4. Example
+
+
+
+<a name="api-modules-storedquery-method-run-return-data"></a>
+<a name="sec-5-5-1-5"></a>
+##### 5.5.1.5. Return Data
+
+
+
+<a name="api-modules-template"></a>
+<a name="sec-5-6"></a>
+### 5.6. Template
 
 
 
 <a name="api-modules-template-method-index"></a>
-<a name="sec-5-5-1"></a>
-#### 5.5.1. Method: index
+<a name="sec-5-6-1"></a>
+#### 5.6.1. Method: index
 
 
 
 <a name="api-modules-template-method-index-http-model"></a>
-<a name="sec-5-5-1-1"></a>
-##### 5.5.1.1. HTTP Model
+<a name="sec-5-6-1-1"></a>
+##### 5.6.1.1. HTTP Model
 
 
 <table>
@@ -1433,8 +1556,8 @@ dont_duplicate=t'
 
 
 <a name="api-modules-template-method-index-parameters"></a>
-<a name="sec-5-5-1-2"></a>
-##### 5.5.1.2. parameters
+<a name="sec-5-6-1-2"></a>
+##### 5.6.1.2. parameters
 
 <table>
   <tr>
@@ -1477,8 +1600,8 @@ dont_duplicate=t'
 </table>
 
 <a name="api-modules-template-method-index-http-codes"></a>
-<a name="sec-5-5-1-3"></a>
-##### 5.5.1.3. HTTP Codes
+<a name="sec-5-6-1-3"></a>
+##### 5.6.1.3. HTTP Codes
 
 <table>
   <tr>	
@@ -1505,62 +1628,62 @@ dont_duplicate=t'
 
 
 <a name="api-modules-template-method-index-example"></a>
-<a name="sec-5-5-1-4"></a>
-##### 5.5.1.4. Example
+<a name="sec-5-6-1-4"></a>
+##### 5.6.1.4. Example
 
 
 
 <a name="api-modules-template-method-index-return-data"></a>
-<a name="sec-5-5-1-5"></a>
-##### 5.5.1.5. Return Data
+<a name="sec-5-6-1-5"></a>
+##### 5.6.1.5. Return Data
 
 
 
 <a name="api-modules-template-method-create"></a>
-<a name="sec-5-5-2"></a>
-#### 5.5.2. Method: create
+<a name="sec-5-6-2"></a>
+#### 5.6.2. Method: create
 
 
 
 <a name="api-modules-template-method-create-parameters"></a>
-<a name="sec-5-5-2-1"></a>
-##### 5.5.2.1. Parameters
+<a name="sec-5-6-2-1"></a>
+##### 5.6.2.1. Parameters
 
 
 
 <a name="api-modules-template-method-create-http-codes"></a>
-<a name="sec-5-5-2-2"></a>
-##### 5.5.2.2. HTTP Codes
+<a name="sec-5-6-2-2"></a>
+##### 5.6.2.2. HTTP Codes
 
 
 
 <a name="api-modules-template-method-create-example"></a>
-<a name="sec-5-5-2-3"></a>
-##### 5.5.2.3. Example
+<a name="sec-5-6-2-3"></a>
+##### 5.6.2.3. Example
 
 
 
 <a name="api-modules-template-method-update-gupdate"></a>
-<a name="sec-5-5-3"></a>
-#### 5.5.3. Method: update (gupdate)
+<a name="sec-5-6-3"></a>
+#### 5.6.3. Method: update (gupdate)
 
 
 
 <a name="api-modules-template-method-update-gupdate-parameters"></a>
-<a name="sec-5-5-3-1"></a>
-##### 5.5.3.1. Parameters
+<a name="sec-5-6-3-1"></a>
+##### 5.6.3.1. Parameters
 
 
 
 <a name="api-modules-template-method-update-gupdate-http-codes"></a>
-<a name="sec-5-5-3-2"></a>
-##### 5.5.3.2. HTTP Codes
+<a name="sec-5-6-3-2"></a>
+##### 5.6.3.2. HTTP Codes
 
 
 
 <a name="api-modules-template-method-update-gupdate-example"></a>
-<a name="sec-5-5-3-3"></a>
-##### 5.5.3.3. Example
+<a name="sec-5-6-3-3"></a>
+##### 5.6.3.3. Example
 
 
 
