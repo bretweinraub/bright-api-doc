@@ -1470,13 +1470,13 @@ dont_duplicate=t'
 
   <tr>
     <td><pre>name</pre></td>
-	<td>name=name=myStoredQuery</td>
+	<td>name=myStoredQuery</td>
 	<td>this is the query to run.  Note for "builtin" queries, these are available for all realms and you will need to set query_scope=bright</td>
   </tr>	
 
   <tr>
     <td><pre>query_scope</pre></td>
-	<td>query_scope=query_scope=bright</td>
+	<td>query_scope=bright</td>
 	<td>when set to "bright", the indication is this stored query is generic, not custom to your course provider or realm</td>
   </tr>	
 </table>
