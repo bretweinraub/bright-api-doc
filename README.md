@@ -58,6 +58,12 @@
 			*	 5.4.4.1. [Parameters](#sec-5-4-4-1)
 			*	 5.4.4.2. [HTTP Codes](#sec-5-4-4-2)
 			*	 5.4.4.3. [Example](#sec-5-4-4-3)
+		*	 5.4.5. [Method: launch_url](#sec-5-4-5)
+			*	 5.4.5.1. [HTTP Model](#sec-5-4-5-1)
+			*	 5.4.5.2. [parameters](#sec-5-4-5-2)
+			*	 5.4.5.3. [HTTP Codes](#sec-5-4-5-3)
+			*	 5.4.5.4. [Example](#sec-5-4-5-4)
+			*	 5.4.5.5. [Return Data](#sec-5-4-5-5)
 	*	 5.5. [StoredQuery](#sec-5-5)
 		*	 5.5.1. [Method: run](#sec-5-5-1)
 			*	 5.5.1.1. [HTTP Model](#sec-5-5-1-1)
@@ -1410,6 +1416,128 @@ dont_duplicate=t'
 ```
 
 
+<a name="api-modules-registration-method-launch_url"></a>
+<a name="sec-5-4-5"></a>
+#### 5.4.5. Method: launch_url
+
+The launch_url method is used to a get a unique, transient URL for course launch in direct response
+to a course launch event.   Note, these cannot be cached, as they will expire.
+
+
+
+
+
+<a name="api-modules-registration-method-launch_url-http-model"></a>
+<a name="sec-5-4-5-1"></a>
+##### 5.4.5.1. HTTP Model
+
+
+<table>
+  <tr>
+    <th>Verb</th>
+	<th>Form</th>
+  </tr>	
+  <tr>
+    <td>GET</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/registration/[registration_guid]/launch_url?params...</td>
+  </tr>
+</table>
+
+
+<a name="api-modules-registration-method-launch_url-parameters"></a>
+<a name="sec-5-4-5-2"></a>
+##### 5.4.5.2. parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Example</th>
+    <th>Notes</th>
+  </tr>
+   <tr>
+     <td>__access method__</td>
+	 <td>One of:
+<table>
+  <tr>
+    <td>api_key=xxxxxxxxxx [an api key created previously]</td>
+  </tr>
+
+  <tr>
+    <td>sc_app_id=XXXXXXXXX&sc_secret_key=YYYYYYYYYYY [a valid SCORMCloud app ID/secret key pair]</td>
+  </tr>
+
+  <tr>
+    <td>realm_guid=XXXXXXXXX&realm_secret_key=YYYYYYYYYY [a valid Bright Realm GUID/secret key pair]</td>
+  </tr>
+</table></td>  
+	 <td>see [Access Modes](#access-modes)</td>
+  </tr>
+
+  <tr>
+    <td><pre>launching</pre></td>
+	<td>launching=?launching=1</td>
+	<td>Deprecated.  Historically, caused the creation of a launchHistory record in Bright; which is now deprecated</td>
+  </tr>	
+
+  <tr>
+    <td><pre>review</pre></td>
+	<td>review=?review=1</td>
+	<td>Specifies the course will be launched in review mode and progress will not be tracked</td>
+  </tr>	
+
+  <tr>
+    <td><pre>redirect_url</pre></td>
+	<td>redirect_url=?redirect_url=[uri encodeed URL]</td>
+	<td>When the user exits the course, the browser window will redirect to this URL</td>
+  </tr>	
+
+  <tr>
+    <td><pre>tags</pre></td>
+	<td>tags=?tags=[uri encoded list of course tags]</td>
+	<td>Feature included for backward compatibility with the SCORMCloud plugin for WordPress.   When a course was launched from a page/post, the course was auto-tagged with the page category.</td>
+  </tr>	
+</table>
+
+<a name="api-modules-registration-method-launch_url-http-codes"></a>
+<a name="sec-5-4-5-3"></a>
+##### 5.4.5.3. HTTP Codes
+
+<table>
+  <tr>	
+    <th>Code</th>
+	<th>Description</th>
+  </tr>
+
+  <tr>
+    <td>200</td>
+	<td>Success; items returned</td>
+  </tr>		 
+
+  <tr>
+    <td>401</td>
+	<td>If you do not specify a valid api_key, sc_app_id/sc_secret_key or realm_guid/realm_secret_key, you will receive HTTP</td>
+  </tr>		 
+
+  <tr>
+    <td>500</td>
+	<td>An illegal request, such as a malformed argument</td>
+  </tr>		 
+
+</table>
+
+
+<a name="api-modules-registration-method-launch_url-example"></a>
+<a name="sec-5-4-5-4"></a>
+##### 5.4.5.4. Example
+
+
+
+<a name="api-modules-registration-method-launch_url-return-data"></a>
+<a name="sec-5-4-5-5"></a>
+##### 5.4.5.5. Return Data
+
+
+
 <a name="api-modules-storedquery"></a>
 <a name="sec-5-5"></a>
 ### 5.5. StoredQuery
@@ -1478,6 +1606,12 @@ dont_duplicate=t'
     <td><pre>query_scope</pre></td>
 	<td>query_scope=bright</td>
 	<td>when set to "bright", the indication is this stored query is generic, not custom to your course provider or realm</td>
+  </tr>	
+
+  <tr>
+    <td><pre>format</pre></td>
+	<td>format=csv|json|xml</td>
+	<td>defines the format the data should be returned as.  Will set the content type of the response</td>
   </tr>	
 </table>
 
