@@ -9,8 +9,10 @@
 *	 3. [Quick Start](#sec-3)
 	*	 3.1. [Prerequisite Data](#sec-3-1)
 	*	 3.2. [Specifying a results format](#sec-3-2)
-		*	 3.2.1. [Fetching an XML result](#sec-3-2-1)
-		*	 3.2.2. [Fetching an JSON result](#sec-3-2-2)
+		*	 3.2.1. [Overview](#sec-3-2-1)
+		*	 3.2.2. [Fetching an XML result](#sec-3-2-2)
+		*	 3.2.3. [Fetching an JSON result](#sec-3-2-3)
+		*	 3.2.4. [Fetching a CSV result](#sec-3-2-4)
 *	 4. [Access Modes](#sec-4)
 	*	 4.1. [Via SCORMCloud App ID and Secret Key](#sec-4-1)
 	*	 4.2. [Via Bright API Key](#sec-4-2)
@@ -335,9 +337,27 @@ And the result:
 
 
 
-<a name="quick-start-specifying-a-results-format-fetching-an-xml-result"></a>
+<a name="quick-start-specifying-a-results-format-overview"></a>
 <a name="sec-3-2-1"></a>
-#### 3.2.1. Fetching an XML result
+#### 3.2.1. Overview
+
+Regardless of API call you are making, you must *always* specify an interface format when interacting with the Bright API.
+
+This must be specified
+
+ * Append to the URL prior to query parameters, like:
+
+[BRIGHT_URL].(format=xml|json|csv]?query_parameters=....
+
+While in previous software versions, in some cases the request format was inferred, and '.json' could be ommitted, this model is 
+deprecated and the request format is now required.
+
+
+
+
+<a name="quick-start-specifying-a-results-format-fetching-an-xml-result"></a>
+<a name="sec-3-2-2"></a>
+#### 3.2.2. Fetching an XML result
 
 To fetch your results in XML format, append a '.xml' to the url, *before* the request parameters.  For example
 
@@ -348,8 +368,8 @@ http://[BRIGHT URL]/bright/api/v2/course.xml
 
 
 <a name="quick-start-specifying-a-results-format-fetching-an-json-result"></a>
-<a name="sec-3-2-2"></a>
-#### 3.2.2. Fetching an JSON result
+<a name="sec-3-2-3"></a>
+#### 3.2.3. Fetching an JSON result
 
 Let's say if you are using the API from Javascript, and you'd like your results back as JSON.  Easy, just
 rewrite the URL to use 'course.json' instead of 'course.xml'
@@ -386,6 +406,18 @@ And the result (formatted for readibility:
 	 "versions":-1
  }
 ]
+```
+
+
+
+<a name="quick-start-specifying-a-results-format-fetching-a-csv-result"></a>
+<a name="sec-3-2-4"></a>
+#### 3.2.4. Fetching a CSV result
+
+To fetch your results in CSV format, append a '.csv' to the url, *before* the request parameters.  For example
+
+```
+http://[BRIGHT URL]/bright/api/v2/course.csv
 ```
 
 
@@ -1439,7 +1471,7 @@ to a course launch event.   Note, these cannot be cached, as they will expire.
   </tr>	
   <tr>
     <td>GET</td>
-    <td>(http|https)://BRIGHT_URL/bright/api/v2/registration/[registration_guid]/launch_url?params...</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/registration/[registration_guid]/launch_url.[format=xml|json|csv]?params...</td>
   </tr>
 </table>
 
@@ -1562,7 +1594,7 @@ to a course launch event.   Note, these cannot be cached, as they will expire.
   </tr>	
   <tr>
     <td>GET</td>
-    <td>(http|https)://BRIGHT_URL/bright/api/v2/run?name=[query-name]&...</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/run[.format]?name=[query-name]&...</td>
   </tr>
 </table>
 
