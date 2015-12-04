@@ -67,12 +67,18 @@
 			*	 5.4.5.4. [Example](#sec-5-4-5-4)
 			*	 5.4.5.5. [Return Data](#sec-5-4-5-5)
 	*	 5.5. [StoredQuery](#sec-5-5)
-		*	 5.5.1. [Method: run](#sec-5-5-1)
+		*	 5.5.1. [Method: initialize](#sec-5-5-1)
 			*	 5.5.1.1. [HTTP Model](#sec-5-5-1-1)
 			*	 5.5.1.2. [parameters](#sec-5-5-1-2)
 			*	 5.5.1.3. [HTTP Codes](#sec-5-5-1-3)
 			*	 5.5.1.4. [Example](#sec-5-5-1-4)
 			*	 5.5.1.5. [Return Data](#sec-5-5-1-5)
+		*	 5.5.2. [Method: run](#sec-5-5-2)
+			*	 5.5.2.1. [HTTP Model](#sec-5-5-2-1)
+			*	 5.5.2.2. [parameters](#sec-5-5-2-2)
+			*	 5.5.2.3. [HTTP Codes](#sec-5-5-2-3)
+			*	 5.5.2.4. [Example](#sec-5-5-2-4)
+			*	 5.5.2.5. [Return Data](#sec-5-5-2-5)
 	*	 5.6. [Template](#sec-5-6)
 		*	 5.6.1. [Method: index](#sec-5-6-1)
 			*	 5.6.1.1. [HTTP Model](#sec-5-6-1-1)
@@ -1576,15 +1582,103 @@ to a course launch event.   Note, these cannot be cached, as they will expire.
 
 
 
-<a name="api-modules-storedquery-method-run"></a>
+<a name="api-modules-storedquery-method-initialize"></a>
 <a name="sec-5-5-1"></a>
-#### 5.5.1. Method: run
+#### 5.5.1. Method: initialize
+
+
+
+<a name="api-modules-storedquery-method-initialize-http-model"></a>
+<a name="sec-5-5-1-1"></a>
+##### 5.5.1.1. HTTP Model
+
+
+<table>
+  <tr>
+    <th>Verb</th>
+	<th>Form</th>
+  </tr>	
+  <tr>
+    <td>GET</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/initialize[.format]</td>
+  </tr>
+</table>
+
+
+<a name="api-modules-storedquery-method-initialize-parameters"></a>
+<a name="sec-5-5-1-2"></a>
+##### 5.5.1.2. parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Example</th>
+    <th>Notes</th>
+  </tr>
+   <tr>
+     <td>__access method__</td>
+	 <td>One of:
+<table>
+  <tr>
+    <td>api_key=xxxxxxxxxx [an api key created previously]</td>
+  </tr>
+
+  <tr>
+    <td>sc_app_id=XXXXXXXXX&sc_secret_key=YYYYYYYYYYY [a valid SCORMCloud app ID/secret key pair]</td>
+  </tr>
+
+  <tr>
+    <td>realm_guid=XXXXXXXXX&realm_secret_key=YYYYYYYYYY [a valid Bright Realm GUID/secret key pair]</td>
+  </tr>
+</table></td>  
+	 <td>see [Access Modes](#access-modes)</td>
+  </tr>
+</table>
+
+<a name="api-modules-storedquery-method-initialize-http-codes"></a>
+<a name="sec-5-5-1-3"></a>
+##### 5.5.1.3. HTTP Codes
+
+<table>
+  <tr>	
+    <th>Code</th>
+	<th>Description</th>
+  </tr>
+
+  <tr>
+    <td>200</td>
+	<td>Success; items returned</td>
+  </tr>		 
+
+  <tr>
+    <td>401</td>
+	<td>If you do not specify a valid api_key, sc_app_id/sc_secret_key or realm_guid/realm_secret_key, you will receive HTTP 401</td>
+  </tr>		 
+
+</table>
+
+
+<a name="api-modules-storedquery-method-initialize-example"></a>
+<a name="sec-5-5-1-4"></a>
+##### 5.5.1.4. Example
+
+
+
+<a name="api-modules-storedquery-method-initialize-return-data"></a>
+<a name="sec-5-5-1-5"></a>
+##### 5.5.1.5. Return Data
+
+
+
+<a name="api-modules-storedquery-method-run"></a>
+<a name="sec-5-5-2"></a>
+#### 5.5.2. Method: run
 
 
 
 <a name="api-modules-storedquery-method-run-http-model"></a>
-<a name="sec-5-5-1-1"></a>
-##### 5.5.1.1. HTTP Model
+<a name="sec-5-5-2-1"></a>
+##### 5.5.2.1. HTTP Model
 
 
 <table>
@@ -1600,8 +1694,8 @@ to a course launch event.   Note, these cannot be cached, as they will expire.
 
 
 <a name="api-modules-storedquery-method-run-parameters"></a>
-<a name="sec-5-5-1-2"></a>
-##### 5.5.1.2. parameters
+<a name="sec-5-5-2-2"></a>
+##### 5.5.2.2. parameters
 
 <table>
   <tr>
@@ -1648,8 +1742,8 @@ to a course launch event.   Note, these cannot be cached, as they will expire.
 </table>
 
 <a name="api-modules-storedquery-method-run-http-codes"></a>
-<a name="sec-5-5-1-3"></a>
-##### 5.5.1.3. HTTP Codes
+<a name="sec-5-5-2-3"></a>
+##### 5.5.2.3. HTTP Codes
 
 <table>
   <tr>	
@@ -1681,14 +1775,14 @@ to a course launch event.   Note, these cannot be cached, as they will expire.
 
 
 <a name="api-modules-storedquery-method-run-example"></a>
-<a name="sec-5-5-1-4"></a>
-##### 5.5.1.4. Example
+<a name="sec-5-5-2-4"></a>
+##### 5.5.2.4. Example
 
 
 
 <a name="api-modules-storedquery-method-run-return-data"></a>
-<a name="sec-5-5-1-5"></a>
-##### 5.5.1.5. Return Data
+<a name="sec-5-5-2-5"></a>
+##### 5.5.2.5. Return Data
 
 
 
