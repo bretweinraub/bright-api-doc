@@ -862,7 +862,7 @@ curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?course_g
   </tr>	
   <tr>
     <td>GET</td>
-    <td>(http|https)://BRIGHT_URL/bright/api/v2/</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/invitation/add_users[.format]?param1=value1&...</td>
   </tr>
 </table>
 
