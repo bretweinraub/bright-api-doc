@@ -1586,6 +1586,8 @@ to a course launch event.   Note, these cannot be cached, as they will expire.
 <a name="sec-5-5-1"></a>
 #### 5.5.1. Method: initialize
 
+Initialize is generally not necessary, but can be used in fresh installs of Bright Server to initialize the stored queries with a
+query_scope of 'bright'.
 
 
 <a name="api-modules-storedquery-method-initialize-http-model"></a>
