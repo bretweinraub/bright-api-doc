@@ -893,9 +893,9 @@ curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?course_g
   </tr>
 
   <tr>
-    <td><pre>show_registration_guids</pre></td>
-	<td>show_registration_guids=t</td>
-	<td>When set to true, the response will include two fields, "record" and "registration_guids".  The "record" is the invitation, but "registration_guids" includes a complex document that can be used to determine if the user in question actualy received their course registrations.   This is high useful in the case of invitations used implement license keys.  For this type, a user can be added to an invitation without seats available for one or more courses.  In this case, the registration_guids document can be used to determine if the user is actually registered to the courses associated with the invitation.</td>
+    <td><pre>api_template</pre></td>
+	<td>api_template=(public|extended)</td>
+	<td>When set to "extended", the response will include three fields, "record", "messages", and "registration_guids".  The "record" is the invitation, and "registration_guids" includes a complex document that can be used to determine if the user in question actualy received their course registrations.   This is high useful in the case of invitations used implement license keys.  For this type, a user can be added to an invitation without seats available for one or more courses.  In this case, the registration_guids document can be used to determine if the user is actually registered to the courses associated with the invitation.  Messages contains information from the license key processor relevant for user feedback.</td>
   </tr>	
 </table>
 
