@@ -121,6 +121,8 @@ are available via which API calls.  It also covers what to do when things go wro
 
 More information about Bright and the Bright platform can be accessed from the [Aura Homepage](http://www.aura-software.com).
 
+We want your feedback!!!  Please report error or questions to us at [Aura Support](http://www.aura-software.com/contact-us).
+
 
 <a name="general-usage"></a>
 <a name="sec-2"></a>
@@ -862,7 +864,7 @@ curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?course_g
   </tr>	
   <tr>
     <td>GET</td>
-    <td>(http|https)://BRIGHT_URL/bright/api/v2/invitation/add_users[.format]?param1=value1&...</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/invitation/add_learners[.format]?param1=value1&...</td>
   </tr>
 </table>
 
@@ -897,6 +899,36 @@ curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?course_g
 	<td>api_template=(public|extended)</td>
 	<td>When set to "extended", the response will include three fields, "record", "messages", and "registration_guids".  The "record" is the invitation, and "registration_guids" includes a complex document that can be used to determine if the user in question actualy received their course registrations.   This is high useful in the case of invitations used implement license keys.  For this type, a user can be added to an invitation without seats available for one or more courses.  In this case, the registration_guids document can be used to determine if the user is actually registered to the courses associated with the invitation.  Messages contains information from the license key processor relevant for user feedback.</td>
   </tr>	
+
+  <tr>
+    <td><pre>learners</pre></td>
+	<td>learners=["users1@exampledomain.com","user2@anotherexample.com"]</td>
+	<td>URI encoded array of strings, where each string is an email address.  These learners will be added to the invitation, and will receive registrations for the courses associated with the invitation [license data dependent].  </td>
+  </tr>	
+
+  <tr>
+    <td><pre>name</pre></td>
+	<td>name=myinvitation</td>
+	<td>you must specify the invitation by name.  Failure to do so, or to specify a valid invitation name, will result in a return code of 404</td>
+  </tr>	
+
+  <tr>
+    <td><pre>nodelay</pre></td>
+	<td>nodelay=true</td>
+	<td>External initialization of registrations will occur synchronously [request will block until they are completed].  The default is asynchronous initialization</td>
+  </tr>	
+
+  <tr>
+    <td><pre>skip_external_initialization</pre></td>
+	<td>skip_external_initialization=true</td>
+	<td>Useful in tests scenarios.  The registrations created won't be externally initialized in the course provider like SCORMCloud</td>
+  </tr>	
+
+  <tr>
+    <td><pre>unlearners</pre></td>
+	<td>unlearners=["users1@exampledomain.com","user2@anotherexample.com"]</td>
+	<td>URI encoded array of strings, where each string is an email address.  These learners will be removed from the invitation.  Associated registrations will be marked inactive.</td>
+  </tr>	
 </table>
 
 <a name="api-modules-invitation-method-add_learners-http-codes"></a>
@@ -917,6 +949,11 @@ curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?course_g
   <tr>
     <td>401</td>
 	<td>If you do not pass a valid realm_guid/realm_secret_key, you will receive HTTP 401</td>
+  </tr>		 
+
+  <tr>
+    <td>404</td>
+	<td>(not found); The value passed in via your name parameter did not match an invitation for this realm</td>
   </tr>		 
 
   <tr>
