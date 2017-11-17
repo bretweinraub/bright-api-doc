@@ -13,6 +13,7 @@
 		*	 3.2.2. [Fetching an XML result](#sec-3-2-2)
 		*	 3.2.3. [Fetching an JSON result](#sec-3-2-3)
 		*	 3.2.4. [Fetching a CSV result](#sec-3-2-4)
+	*	 3.3. [Using Regular Expression Queries](#sec-3-3)
 *	 4. [Access Modes](#sec-4)
 	*	 4.1. [Via SCORMCloud App ID and Secret Key](#sec-4-1)
 	*	 4.2. [Via Bright API Key](#sec-4-2)
@@ -451,6 +452,38 @@ To fetch your results in CSV format, append a '.csv' to the url, *before* the re
 ```
 http://[BRIGHT URL]/bright/api/v2/course.csv
 ```
+
+
+
+<a name="quick-start-using-regular-expression-queries"></a>
+<a name="sec-3-3"></a>
+### 3.3. Using Regular Expression Queries
+
+
+Using regular expression query is simple with the Bright API.
+
+For controllers that support it,
+
+  * Registration
+  * Course
+
+You can specify query paramets like
+
+```shell
+curl 'http://[BRIGHT URL]/bright/api/v2/course.json?[key-logic]&
+title_re=[a title regular expression]&
+title_re=[a second regular expression]&
+custom_re=[a matching expression on the custom field]
+...
+```
+
+Note:
+
+ * You can use the same field multiple times, and it will be matched repeatedly
+ * This search in text, including in custom [JSON] text.
+ * You can use this to emulate functionality like JSON Path/Pointer.
+
+
 
 
 
