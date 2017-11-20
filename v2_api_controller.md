@@ -477,11 +477,24 @@ custom_re=[a matching expression on the custom field]
 ...
 ```
 
+Complex example:
+
+In this example, we have a "pts available" field in the course custom
+field.
+
+The query below selects out courses that have a number of points
+available >= 4.
+
+```shell
+wget -qO- 'http://[BRIGHT URL]/bright/api/v2/course.json?[key logic]&
+custom_re=points_available\":\"([4-9]|[1-9]([0-9])+)'
+```
+
 Note:
 
- * You can use the same field multiple times, and it will be matched repeatedly
- * This search in text, including in custom [JSON] text.
- * You can use this to emulate functionality like JSON Path/Pointer.
+ * This search is full text, including in custom [JSON] text.
+ * Therefore you must support JSON syntax include ':' assisgments.
+
 
 
 
