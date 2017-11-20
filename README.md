@@ -14,6 +14,8 @@
 		*	 3.2.3. [Fetching an JSON result](#sec-3-2-3)
 		*	 3.2.4. [Fetching a CSV result](#sec-3-2-4)
 	*	 3.3. [Using Regular Expression Queries](#sec-3-3)
+		*	 3.3.1. [Complex Example](#sec-3-3-1)
+		*	 3.3.2. [Using Multiple Expressions On The Same Field.](#sec-3-3-2)
 *	 4. [Access Modes](#sec-4)
 	*	 4.1. [Via SCORMCloud App ID and Secret Key](#sec-4-1)
 	*	 4.2. [Via Bright API Key](#sec-4-2)
@@ -367,7 +369,8 @@ And the result:
 <a name="sec-3-2"></a>
 ### 3.2. Specifying a results format
 
-
+The Bright API lets you specify the format of your results, but appending a suffix to the require URL prior to
+the query string.
 
 
 <a name="quick-start-specifying-a-results-format-overview"></a>
@@ -477,7 +480,13 @@ custom_re=[a matching expression on the custom field]
 ...
 ```
 
-Complex example:
+
+
+
+
+<a name="quick-start-using-regular-expression-queries-complex-example"></a>
+<a name="sec-3-3-1"></a>
+#### 3.3.1. Complex Example
 
 In this example, we have a "pts available" field in the course custom
 field.
@@ -490,7 +499,12 @@ wget -qO- 'http://[BRIGHT URL]/bright/api/v2/course.json?[key logic]&
 custom_re=points_available\":\"([4-9]|[1-9]([0-9])+)'
 ```
 
-Using Multiple Expressions on the same field.
+
+<a name="quick-start-using-regular-expression-queries-using-multiple-expressions-on-the-same-field"></a>
+<a name="sec-3-3-2"></a>
+#### 3.3.2. Using Multiple Expressions On The Same Field.
+
+Using Multiple Expressions On The Same Field.
 
 It is possible to repeatedly query the same field from multiple
 regular expressions.  To do this, use a numerical suffix on the query
@@ -510,9 +524,6 @@ Note:
 
  * This search is full text, including in custom [JSON] text.
  * Therefore you must support JSON syntax include ':' assisgments.
-
-
-
 
 
 
