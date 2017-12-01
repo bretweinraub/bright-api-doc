@@ -16,6 +16,7 @@
 	*	 3.3. [Using Regular Expression Queries](#sec-3-3)
 		*	 3.3.1. [Complex Example](#sec-3-3-1)
 		*	 3.3.2. [Using Multiple Expressions On The Same Field.](#sec-3-3-2)
+	*	 3.4. [Specifying the List Of Fields To Be Returned](#sec-3-4)
 *	 4. [Access Modes](#sec-4)
 	*	 4.1. [Via SCORMCloud App ID and Secret Key](#sec-4-1)
 	*	 4.2. [Via Bright API Key](#sec-4-2)
@@ -524,6 +525,12 @@ Note:
 
  * This search is full text, including in custom [JSON] text.
  * Therefore you must support JSON syntax include ':' assisgments.
+
+
+
+<a name="quick-start-specifying-the-list-of-fields-to-be-returned"></a>
+<a name="sec-3-4"></a>
+### 3.4. Specifying the List Of Fields To Be Returned
 
 
 
