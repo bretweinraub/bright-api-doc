@@ -2,9 +2,9 @@
 ## Table of Contents
 *	 1. [Introduction](#sec-1)
 *	 2. [General Usage](#sec-2)
-	*	 2.1. [RESTful API](#sec-2-1)
-	*	 2.2. [List of Available Resources](#sec-2-2)
-	*	 2.3. [Special Considerations for Cross-Browser Scripting Restrictions](#sec-2-3)
+*	 2.1. [RESTful API](#sec-2-1)
+*	 2.2. [List of Available Resources](#sec-2-2)
+*	 2.3. [Special Considerations for Cross-Browser Scripting Restrictions](#sec-2-3)
 *	 3. [Quick Start](#sec-3)
 	*	 3.1. [Prerequisite Data](#sec-3-1)
 	*	 3.2. [Specifying a results format](#sec-3-2)
