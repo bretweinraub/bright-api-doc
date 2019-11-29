@@ -1,0 +1,10 @@
+<table>
+  <tr>
+    <th>Verb</th>
+	<th>Form</th>
+  </tr>	
+  <tr>
+    <td>GET</td>
+    <td>(http|https)://BRIGHT_URL/bright/api/v2/course[.format]?param1=value1&...</td>
+  </tr>
+</table>

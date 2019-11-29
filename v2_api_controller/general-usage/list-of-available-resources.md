@@ -1,0 +1,11 @@
+* Bright Api Keys (/bright/api/v2/api_key)
+* Course Provider (/bright/api/v2/course_provider)
+* Courses (/bright/api/v2/course)
+* Custom Endpoints (/bright/api/v2/customer/...)
+* Invitations (/bright/api/v2/invitation)
+* Launch Histories (/bright/api/v2/launch_history)
+* Realm User (/bright/api/v2/realm_user)
+* Registrations (/bright/api/v2/registation)
+* Stored Queries (/bright/api/v2/template)
+* Templates (/bright/api/v2/template)
+
