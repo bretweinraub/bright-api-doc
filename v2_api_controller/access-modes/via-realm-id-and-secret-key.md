@@ -13,7 +13,7 @@ For the purposes of this example, we will use the following:
 With these, lets create an api key 'bound' to this authentication level:
 
 ```shell
-curl 'http://localhost:3000/bright/api/v2/api_key/gcreate?
+curl 'https://[BRIGHT URL]/bright/api/v2/api_key/gcreate?
 realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
 realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
 ```
@@ -37,14 +37,14 @@ And the response:
 We can now use the "access_token" returned as an API key in an insecure situation:
 
 ```shell
-curl 'http://localhost:3000/bright/api/v2/course?
+curl 'https://[BRIGHT URL]/bright/api/v2/course?
 api_key=2a84a6ddb229c13bc945874b69fab8ba'
 ```
 
 Or in a secure situation, you can use the realm key directly:
 
 ```shell
-curl 'http://localhost:3000/bright/api/v2/course?
+curl 'https://[BRIGHT URL]/bright/api/v2/course?
 realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
 realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
 ```

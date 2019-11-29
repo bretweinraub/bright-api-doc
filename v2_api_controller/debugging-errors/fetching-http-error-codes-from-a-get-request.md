@@ -1,7 +1,7 @@
 You can see the HTTP response code for a GET request in curl with the -I flag:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?
 sc_app_id=RQIBAXU49I&
 sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N' -I
  HTTP/1.1 406 Not Acceptable
@@ -20,13 +20,13 @@ sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N' -I
 You will also get no data from a request that matches no data.  But in this case, the HTTP code will be 200
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I\
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I\
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N&title=nosuchcourse'
 ```
 []
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N&title=nosuchcourse' -I
   HTTP/1.1 200 OK
   Content-Type: application/json; charset=utf-8

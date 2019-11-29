@@ -5,7 +5,7 @@ the error messages as a guide to on how to gain access.
 From curl, if you put an invalid response, you'll get no data back:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 ```
 

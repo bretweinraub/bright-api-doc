@@ -33,7 +33,7 @@ In case of errors accessing the SCORMCloud API, a message including the error is
 {
 "error_code":"4",
 "error_message":"The maximum number of registrations has been reached.",
-"error_url":"http://cloud.scorm.com/api?email=..."
+"error_url":"https://cloud.scorm.com/api?email=..."
 }
 ```
 Please note if you are using JSONP, since there are limited facillities to capture errors via JSONP, we

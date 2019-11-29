@@ -123,7 +123,7 @@ courses, generate launch URLs, and query results.
 This document details how to get connected to the Bright Server, how to authenticate, and what functions
 are available via which API calls.  It also covers what to do when things go wrong, and how to get more information.
 
-More information about Bright and the Bright platform can be accessed from the [Bright Homepage](http://www.aura-software.com/bright) or
+More information about Bright and the Bright platform can be accessed from the [Bright Homepage](https://www.aura-software.com/bright) or
 from the [Bright Documentation Site](https://help.aura-software.com).
 
 Stay current with Bright by adding your email address to our blog feed in the side bar of the [Aura Blog](https://www.aura-software.com/blog/).
@@ -143,10 +143,10 @@ The Bright API is used to interact with Bright Server.  Typical things you might
 Regardless, all Bright API calls function in the same way.
 Fundamentally, the Bright API is a RESTful API, so much of what is covered here should seem familiar if you've worked
 with a RESTful API before.  If not, you may want to familiarize yourself with the concepts here:
-http://en.wikipedia.org/wiki/Representational_state_transfer .
+https://en.wikipedia.org/wiki/Representational_state_transfer .
 
-![](http://content.screencast.com/users/bretweinraub/folders/Jing/media/65b3da97-8fc0-47da-bc21-77159d7021c7/00000306.png)
-Source: [Wikipedia](http://en.wikipedia.org/wiki/Representational_state_transfer)
+![](https://content.screencast.com/users/bretweinraub/folders/Jing/media/65b3da97-8fc0-47da-bc21-77159d7021c7/00000306.png)
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Representational_state_transfer)
 
 
 
@@ -316,7 +316,7 @@ available from Aura Support, or from the SCORMCloud console available at https:/
 
 Here's an example of fetching these values from the SCORMCloud administration console:
 
-![SCORMCloud App](http://content.screencast.com/users/bretweinraub/folders/Jing/media/a0ebfd4c-e41d-41f0-8a80-abc4415ddc42/00000554.png)
+![SCORMCloud App](https://content.screencast.com/users/bretweinraub/folders/Jing/media/a0ebfd4c-e41d-41f0-8a80-abc4415ddc42/00000554.png)
 
 You can access this by selection "Apps" from the SCORMCloud administration console left hand menu.
 
@@ -326,7 +326,7 @@ Certain functionality can only be accessed with a realm key, such as invitations
 
 For the purposes of this example, we will use the following:
 
-* Bright API URL: http://[BRIGHT URL]/bright/api/v2
+* Bright API URL: https://[BRIGHT URL]/bright/api/v2
 * SCORMCloud APPID: **RQIBAXU49I**
 * SCORMCloud Secret Key: **nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N**
 
@@ -339,7 +339,7 @@ a feel for what is possible.
 So let's get our list of course from our API:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.xml?sc_app_id=RQIBAXU49I&
+curl 'https://[BRIGHT URL]/bright/api/v2/course.xml?sc_app_id=RQIBAXU49I&
 sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 ```
 
@@ -406,7 +406,7 @@ deprecated and the request format is now required.
 To fetch your results in XML format, append a '.xml' to the url, *before* the request parameters.  For example
 
 ```
-http://[BRIGHT URL]/bright/api/v2/course.xml
+https://[BRIGHT URL]/bright/api/v2/course.xml
 ```
 
 
@@ -419,7 +419,7 @@ Let's say if you are using the API from Javascript, and you'd like your results 
 rewrite the URL to use 'course.json' instead of 'course.xml'
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?
 sc_app_id=RQIBAXU49I&
 sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 ```
@@ -461,7 +461,7 @@ And the result (formatted for readibility:
 To fetch your results in CSV format, append a '.csv' to the url, *before* the request parameters.  For example
 
 ```
-http://[BRIGHT URL]/bright/api/v2/course.csv
+https://[BRIGHT URL]/bright/api/v2/course.csv
 ```
 
 
@@ -481,7 +481,7 @@ For controllers that support it,
 You can specify query paramets like
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?[key-logic]&
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?[key-logic]&
 title_re=[a title regular expression]&
 title_re=[a second regular expression]&
 custom_re=[a matching expression on the custom field]
@@ -503,7 +503,7 @@ The query below selects out courses that have a number of points
 available >= 4.
 
 ```shell
-wget -qO- 'http://[BRIGHT URL]/bright/api/v2/course.json?[key logic]&
+wget -qO- 'https://[BRIGHT URL]/bright/api/v2/course.json?[key logic]&
 custom_re=points_available\":\"([4-9]|[1-9]([0-9])+)'
 ```
 
@@ -524,7 +524,7 @@ parameter.  So instead of custom_re, for example, use
 etc.
 
 ```shell
-wget -qO- 'http://[BRIGHT URL]/bright/api/v2/course.json?[key logic]&
+wget -qO- 'https://[BRIGHT URL]/bright/api/v2/course.json?[key logic]&
 custom_re0=points_available\":\"([4-9]|[1-9]([0-9])+)&custom_re1="category":"onboarding"'
 ```
 
@@ -588,7 +588,7 @@ your data.
 Example:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=\
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=\
 RQIBAXU49I&sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 ```
 
@@ -615,7 +615,7 @@ Here's an example of getting an API token.  This first call creates a special ac
 embedding in a web page for use by browser side Javascript.
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/api_key/create?sc_app_id=RQIBAXU49I
+curl 'https://[BRIGHT URL]/bright/api/v2/api_key/create?sc_app_id=RQIBAXU49I
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N
 &user_email=admin@aura-software.com'
 (returns) df8d1350a6b31378a86b967767f4bba1
@@ -624,7 +624,7 @@ curl 'http://[BRIGHT URL]/bright/api/v2/api_key/create?sc_app_id=RQIBAXU49I
 You can now omit the secret key and app id from subsequent calls and just use the API key:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.xml?\
+curl 'https://[BRIGHT URL]/bright/api/v2/course.xml?\
 api_token=bdb273e9cdace9698c34d97070cb392d'
 ```
 This API token is now "bound" to the access level specified when the key was created.
@@ -650,7 +650,7 @@ For the purposes of this example, we will use the following:
 With these, lets create an api key 'bound' to this authentication level:
 
 ```shell
-curl 'http://localhost:3000/bright/api/v2/api_key/gcreate?
+curl 'https://[BRIGHT URL]/bright/api/v2/api_key/gcreate?
 realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
 realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
 ```
@@ -674,14 +674,14 @@ And the response:
 We can now use the "access_token" returned as an API key in an insecure situation:
 
 ```shell
-curl 'http://localhost:3000/bright/api/v2/course?
+curl 'https://[BRIGHT URL]/bright/api/v2/course?
 api_key=2a84a6ddb229c13bc945874b69fab8ba'
 ```
 
 Or in a secure situation, you can use the realm key directly:
 
 ```shell
-curl 'http://localhost:3000/bright/api/v2/course?
+curl 'https://[BRIGHT URL]/bright/api/v2/course?
 realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
 realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
 ```
@@ -794,7 +794,7 @@ Returns a JSON document of the new record.  HTTP Code is set to 201 (item create
 ```
 curl -w "%{http_code}" -d 'sc_app_id=RQIBAXU49I
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N
-&user_email=admin@aura-software.com' http://[BRIGHT URL]/bright/api/v2/api_key/
+&user_email=admin@aura-software.com' https://[BRIGHT URL]/bright/api/v2/api_key/
 
 {
  "access_token":"a440b1ad868bc76716d22b4b827db77e",
@@ -912,7 +912,7 @@ The index method allows the api user to fetch a course list.
      <td>course_guid</td>
 	 <td>?course_guid=ACourseID</td>
 	 <td>For a SCORMCloud course, this will match the course ID in scormcloud.
-	 See also <a href="http://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.</a></td>
+	 See also <a href="https://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.</a></td>
   </tr>
    <tr>
      <td>include_registrations</td>
@@ -930,7 +930,7 @@ The index method allows the api user to fetch a course list.
 ##### 5.2.2.3. Example
 
 ```
-curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?course_guid=16-4fbd9ea698bce
+curl -w "%{http_code}" 'https://[BRIGHT URL]/bright/api/v2/course.json?course_guid=16-4fbd9ea698bce
 ```
 
 
@@ -1088,7 +1088,7 @@ curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/course.json?course_g
 ##### 5.3.1.4. Example
 
 
-    curl -w "%{http_code}" 'http://[bright-url]/bright/api/v2/invitation/add_learners.json?nodelay=1&api_template=extended&name=xxx&learners=%5B%22admin%40aura-software.com%22%5D&realm_guid=sJtL8PtZG8S0z9bxkjPQ&realm_secret_key=PcQVlfCTIUebps3T268XKzAXvdzFpgc5svkM0uu38Zw'
+    curl -w "%{http_code}" 'https://[bright-url]/bright/api/v2/invitation/add_learners.json?nodelay=1&api_template=extended&name=xxx&learners=%5B%22admin%40aura-software.com%22%5D&realm_guid=sJtL8PtZG8S0z9bxkjPQ&realm_secret_key=PcQVlfCTIUebps3T268XKzAXvdzFpgc5svkM0uu38Zw'
 
 
 
@@ -1335,7 +1335,7 @@ Creates a new realm user.  You must use a realm guid and secret key (or api key 
 
 ```
 curl -w "%{http_code}" 
-'http://localhost:3000/bright/api/v2/realm_user/gcreate.xml?
+'https://[BRIGHT URL]/bright/api/v2/realm_user/gcreate.xml?
 api_key=2a84a6ddb229c13bc945874b69fab8ba&
 email=bretx@aura-software.com&
 custom=foo'
@@ -1420,7 +1420,7 @@ Update a realm user.  You must use a realm guid and secret key (or api key creat
 
 ```
 curl -w "%{http_code}" 
-'http://localhost:3000/bright/api/v2/realm_user/gupdate.xml?
+'https://[BRIGHT URL]/bright/api/v2/realm_user/gupdate.xml?
 api_key=2a84a6ddb229c13bc945874b69fab8ba&
 email=bretx@aura-software.com&
 custom=foox'
@@ -1458,13 +1458,13 @@ For other course providers, the GUID will be a Bright generated unique ID.
 <tr><th>Field Name</th><th>Example Data</th><th>Description</th></tr>
 <tr><td>attempts</td><td>12</td><td>This is the # of attempts of the course, as recorded in SCORMCloud.</td></tr>
 <tr><td>complete</td><td>"complete"</td><td>This is the SCORM 'completion' status as recorded in SCORMCloud.</td></tr>
-<tr><td>course_result</td><td>"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\"><registrationreport format=\"course\" regid=\"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3-65a9ae1bd2f690a3bc789d6a9299b51e\" instanceid=\"0\"><complete>complete</complete><success>failed</success><totaltime>95</totaltime><score>0</score></registrationreport></rsp>"</td><td>The course_result is populated by SCORMCloud and is an XML document that shows the SCORM data collected for the registration.  For the format of the course result, see http://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult where resultsformat is "course".</td></tr>
+<tr><td>course_result</td><td>"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<rsp stat=\"ok\"><registrationreport format=\"course\" regid=\"1-50a38b0d9b2bf_0102b60a8-3bc5-4840-8c90-d1fd01a630c3-65a9ae1bd2f690a3bc789d6a9299b51e\" instanceid=\"0\"><complete>complete</complete><success>failed</success><totaltime>95</totaltime><score>0</score></registrationreport></rsp>"</td><td>The course_result is populated by SCORMCloud and is an XML document that shows the SCORM data collected for the registration.  For the format of the course result, see https://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult where resultsformat is "course".</td></tr>
 <tr><td>crawl_error_msg</td><td></td><td>If there is an error crawling this registration, the error message is listed here.</td></tr>
 <tr><td>crawl_status</td><td>"success"</td><td>Last crawl status for the registration.  Used internally in Bright.</td></tr>
-<tr><td>crawl_type</td><td>"course"</td><td>Shows the value of "resultsformat" that we used when crawling the registration result.  See also http://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult</td></tr>
+<tr><td>crawl_type</td><td>"course"</td><td>Shows the value of "resultsformat" that we used when crawling the registration result.  See also https://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult</td></tr>
 <tr><td>created_at</td><td>"2012-12-21T08:46:36Z"</td><td>The timestamp for the record when created in Bright.  This is not the time the record was created in SCORMCloud.</td></tr>
 <tr><td>custom</td><td>{my_custom_data: 1}</td><td>Any user defined custom JSON data.  This data can be used to build custom functionality into your Bright Embedder.</td></tr>
-<tr><td>full_result</td><td>null</td><td>If your crawler is running in 'full' mode, (see type), the full results document from http://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult is available here.</td></tr>
+<tr><td>full_result</td><td>null</td><td>If your crawler is running in 'full' mode, (see type), the full results document from https://cloud.scorm.com/doc/web-services/api.html#rustici.registration.getRegistrationResult is available here.</td></tr>
 <tr><td>id</td><td>5426</td><td>The Bright internal ID for this registration.</td></tr>
 <tr><td>last_crawled_at</td><td>"2012-12-26T14:27:20Z"</td><td>Datetime the record was last crawled.</td></tr>
 <tr><td>launched_at</td><td>"2012-12-26T14:27:00Z"</td><td>When this registration is launched from Bright, we maintain a local timestamp of the course launch here.  This timestamp can be used via the Bright API to force a recrawl of the registration (using the refresh_if_launched parameter.) See the Bright API document for more information.</td></tr>
@@ -1605,7 +1605,7 @@ The index method allows the api user to query registrations.
 ##### 5.5.3.4. Example
 
 ```
-curl -w "%{http_code}" 'http://localhost:3000/bright/api/v2/registration.json?
+curl -w "%{http_code}" 'https://[BRIGHT URL]/bright/api/v2/registration.json?
 api_key=2a84a6ddb229c13bc945874b69fab8ba&
 learner_id=bret@aura-software.com&
 course_guid=16-4fbd9ea698bce
@@ -1726,7 +1726,7 @@ In case of errors accessing the SCORMCloud API, a message including the error is
 {
 "error_code":"4",
 "error_message":"The maximum number of registrations has been reached.",
-"error_url":"http://cloud.scorm.com/api?email=..."
+"error_url":"https://cloud.scorm.com/api?email=..."
 }
 ```
 Please note if you are using JSONP, since there are limited facillities to capture errors via JSONP, we
@@ -1744,7 +1744,7 @@ using the gcreate alias (using an HTTP get).
 ```
 
 curl -w "%{http_code}" 
-'http://localhost:3000/bright/api/v2/registration/gcreate.json?
+'https://[BRIGHT URL]/bright/api/v2/registration/gcreate.json?
 api_key=2a84a6ddb229c13bc945874b69fab8ba&
 learner_id=bret@aura-software.com&
 course_guid=16-4fbd9ea698bce&
@@ -2288,7 +2288,7 @@ the error messages as a guide to on how to gain access.
 From curl, if you put an invalid response, you'll get no data back:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 ```
 
@@ -2305,7 +2305,7 @@ The only information you will get is an HTTP error code, in this case 406, 'Not 
 You can see the HTTP response code for a GET request in curl with the -I flag:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?
 sc_app_id=RQIBAXU49I&
 sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N' -I
  HTTP/1.1 406 Not Acceptable
@@ -2324,13 +2324,13 @@ sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N' -I
 You will also get no data from a request that matches no data.  But in this case, the HTTP code will be 200
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I\
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I\
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N&title=nosuchcourse'
 ```
 []
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=RQIBAXU49I
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N&title=nosuchcourse' -I
   HTTP/1.1 200 OK
   Content-Type: application/json; charset=utf-8
@@ -2360,7 +2360,7 @@ Instead use the following:
 ```shell
 curl -w "%{http_code}"  -d 'sc_app_id=RQIBAXU49Ix&sc_secret_key=\
 nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N&user_email=newuser@aura-software.com' \
-http://[BRIGHT URL]/bright/api/v2/api_key
+https://[BRIGHT URL]/bright/api/v2/api_key
 ```
 -w %{http_code} is the key part of that.
 

@@ -2,7 +2,7 @@ Let's say if you are using the API from Javascript, and you'd like your results 
 rewrite the URL to use 'course.json' instead of 'course.xml'
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?
 sc_app_id=RQIBAXU49I&
 sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 ```

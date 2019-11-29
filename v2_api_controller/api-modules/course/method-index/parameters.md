@@ -19,7 +19,7 @@
      <td>course_guid</td>
 	 <td>?course_guid=ACourseID</td>
 	 <td>For a SCORMCloud course, this will match the course ID in scormcloud.
-	 See also <a href="http://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.</a></td>
+	 See also <a href="https://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.</a></td>
   </tr>
    <tr>
      <td>include_registrations</td>

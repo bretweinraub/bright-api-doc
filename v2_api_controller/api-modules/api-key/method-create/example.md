@@ -1,7 +1,7 @@
 ```
 curl -w "%{http_code}" -d 'sc_app_id=RQIBAXU49I
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N
-&user_email=admin@aura-software.com' http://[BRIGHT URL]/bright/api/v2/api_key/
+&user_email=admin@aura-software.com' https://[BRIGHT URL]/bright/api/v2/api_key/
 
 {
  "access_token":"a440b1ad868bc76716d22b4b827db77e",

@@ -13,7 +13,7 @@ Here's an example of getting an API token.  This first call creates a special ac
 embedding in a web page for use by browser side Javascript.
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/api_key/create?sc_app_id=RQIBAXU49I
+curl 'https://[BRIGHT URL]/bright/api/v2/api_key/create?sc_app_id=RQIBAXU49I
 &sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N
 &user_email=admin@aura-software.com'
 (returns) df8d1350a6b31378a86b967767f4bba1
@@ -22,7 +22,7 @@ curl 'http://[BRIGHT URL]/bright/api/v2/api_key/create?sc_app_id=RQIBAXU49I
 You can now omit the secret key and app id from subsequent calls and just use the API key:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.xml?\
+curl 'https://[BRIGHT URL]/bright/api/v2/course.xml?\
 api_token=bdb273e9cdace9698c34d97070cb392d'
 ```
 This API token is now "bound" to the access level specified when the key was created.

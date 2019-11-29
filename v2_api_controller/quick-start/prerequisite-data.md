@@ -1,5 +1,8 @@
-* Your Bright API URL.  This will be provided to you and is based on where your Bright server is installed, and what
+* **Your Bright API URL**.  This will be provided to you and is based on where your Bright server is installed, and what
 DNS entry is used to access it.  Don't know it?  Ask us at support@aura-software.com!
+
+
+
 
 If you are using a SCORMCloud course provider, API access can be provided using your SCORMCloud APP ID and secret key.  These are
 available from Aura Support, or from the SCORMCloud console available at https://cloud.scorm.com.
@@ -9,7 +12,7 @@ available from Aura Support, or from the SCORMCloud console available at https:/
 
 Here's an example of fetching these values from the SCORMCloud administration console:
 
-![SCORMCloud App](http://content.screencast.com/users/bretweinraub/folders/Jing/media/a0ebfd4c-e41d-41f0-8a80-abc4415ddc42/00000554.png)
+![SCORMCloud App](https://content.screencast.com/users/bretweinraub/folders/Jing/media/a0ebfd4c-e41d-41f0-8a80-abc4415ddc42/00000554.png)
 
 You can access this by selection "Apps" from the SCORMCloud administration console left hand menu.
 
@@ -19,7 +22,7 @@ Certain functionality can only be accessed with a realm key, such as invitations
 
 For the purposes of this example, we will use the following:
 
-* Bright API URL: http://[BRIGHT URL]/bright/api/v2
+* Bright API URL: https://[BRIGHT URL]/bright/api/v2
 * SCORMCloud APPID: **RQIBAXU49I**
 * SCORMCloud Secret Key: **nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N**
 
@@ -32,7 +35,7 @@ a feel for what is possible.
 So let's get our list of course from our API:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.xml?sc_app_id=RQIBAXU49I&
+curl 'https://[BRIGHT URL]/bright/api/v2/course.xml?sc_app_id=RQIBAXU49I&
 sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 ```
 

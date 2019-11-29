@@ -5,7 +5,7 @@ your data.
 Example:
 
 ```shell
-curl 'http://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=\
+curl 'https://[BRIGHT URL]/bright/api/v2/course.json?sc_app_id=\
 RQIBAXU49I&sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N'
 ```
 

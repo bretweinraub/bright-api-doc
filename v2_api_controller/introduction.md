@@ -7,7 +7,7 @@ courses, generate launch URLs, and query results.
 This document details how to get connected to the Bright Server, how to authenticate, and what functions
 are available via which API calls.  It also covers what to do when things go wrong, and how to get more information.
 
-More information about Bright and the Bright platform can be accessed from the [Bright Homepage](http://www.aura-software.com/bright) or
+More information about Bright and the Bright platform can be accessed from the [Bright Homepage](https://www.aura-software.com/bright) or
 from the [Bright Documentation Site](https://help.aura-software.com).
 
 Stay current with Bright by adding your email address to our blog feed in the side bar of the [Aura Blog](https://www.aura-software.com/blog/).
