@@ -156,14 +156,18 @@ Source: [Wikipedia](http://en.wikipedia.org/wiki/Representational_state_transfer
 
 The Restful api of bright is built around our main resource types:
   
-  * courses
-  * registrations
-  * users
-  * api keys
-  * invitations
-
-for each resource type, we follow the following model, where a specific path, http verb and action are consistent depending on the bright
-resource you are accessing.
+ * Bright Api Keys (/bright/api/v2/api_key)
+ * Course Provider (/bright/api/v2/course_provider)
+ * Courses (/bright/api/v2/course)
+ * Custom Endpoints (/bright/api/v2/customer/...)
+ * Invitations (/bright/api/v2/invitation)
+ * Launch Histories (/bright/api/v2/launch_history)
+ * Realm User (/bright/api/v2/realm_user)
+ * Registrations (/bright/api/v2/registation)
+ * Stored Queries (/bright/api/v2/template)
+ * Templates (/bright/api/v2/template)
+  
+for each resource type, we follow the following model, where a specific path, http verb and action are consistent depending on the bright resource you are accessing.
 
 <table>
 	<tr>
@@ -266,10 +270,14 @@ for an example.
 * Bright Api Keys (/bright/api/v2/api_key)
 * Course Provider (/bright/api/v2/course_provider)
 * Courses (/bright/api/v2/course)
+* Custom Endpoints (/bright/api/v2/customer/...)
 * Invitations (/bright/api/v2/invitation)
-* Registrations (/bright/api/v2/registation)
+* Launch Histories (/bright/api/v2/launch_history)
 * Realm User (/bright/api/v2/realm_user)
+* Registrations (/bright/api/v2/registation)
+* Stored Queries (/bright/api/v2/template)
 * Templates (/bright/api/v2/template)
+
 
 
 <a name="general-usage-special-considerations-for-cross-browser-scripting-restrictions"></a>
