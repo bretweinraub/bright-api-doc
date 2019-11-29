@@ -124,11 +124,11 @@ This document details how to get connected to the Bright Server, how to authenti
 are available via which API calls.  It also covers what to do when things go wrong, and how to get more information.
 
 More information about Bright and the Bright platform can be accessed from the [Bright Homepage](http://www.aura-software.com/bright) or
-from the [Bright Documentation Site](http://help.aura-software.com).
+from the [Bright Documentation Site](https://help.aura-software.com).
 
-Stay current with Bright by adding your email address to our blog feed in the side bar of the [Aura Blog](http://www.aura-software.com/blog/).
+Stay current with Bright by adding your email address to our blog feed in the side bar of the [Aura Blog](https://www.aura-software.com/blog/).
 
-We want your feedback!!!  Please report error or questions to us at [Aura Support](http://www.aura-software.com/contact-us).
+We want your feedback!!!  Please report error or questions to us at [Aura Support](https://bright.aura-software.com/contact-us).
 
 
 <a name="general-usage"></a>
@@ -196,7 +196,6 @@ resource you are accessing.
 		<td>create   </td>
 		<td>create a new {{resource}} with a GET request.  This is an alias to the POST get request provided to allow the {{resource} to be created from a web browser without using a POST.  A variety of cross-domain scripting issues can be addressed using the GET create alias (gcreate).</td>
 	</tr>
-
 	<tr>
 		<td><span class="caps">GET</span>          </td>
 		<td>/{{resource}}/:id       </td>
