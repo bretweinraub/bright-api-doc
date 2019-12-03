@@ -40,6 +40,7 @@ apiDocSpecification = {
     'Via SCORMCloud App ID and Secret Key' => {},
   },
   'API Modules' => {
+    'List Of Parameters Available To All Methods' => {},
     'API Key' => {
       'Method: create' => {
         'HTTP Model:' => {},
