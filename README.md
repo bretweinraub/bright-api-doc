@@ -764,13 +764,41 @@ For the API documentation that follows, for the sake of brevity we will omit in 
 
 These are described in more depth here:
 
- - [Access Modes](#access-modes)
- - [Using Regular Expression Queries](#quick-start-using-regular-expression-queries)
- - [Specifying the List Of Fields To Be Returned](#quick-start-specifying-the-list-of-fields-to-be-returned)
+- [Access Modes](#access-modes)
+- [Using Regular Expression Queries](#quick-start-using-regular-expression-queries)
+- [Specifying the List Of Fields To Be Returned](#quick-start-specifying-the-list-of-fields-to-be-returned)
+
+#### Parameters related to access method:
+
+Note, you specify __ONE OF__:
+
+- api_token
+- realm_guid AND realm_secret_key
+- sc_app_id AND sc_secret_key [__DEPRECATED__]
 
 |Parameter|Example|Description|
 |--|--|--|
-| __access method__ | api_key=[an api key created previously] | see [Access Modes](#access-modes) |
+|sc_app_id|||
+|sc_secret_key|||
+|realm_guid|||
+|realm_secret_key|||
+|api_token|||
+
+#### Parameters that control the data to be returned.
+
+see 
+- 
+
+|Parameter|Example|Description|
+|--|--|--|
+|fields|fields=[field1,...]|[specifying the list of fields to be returned](#quick-start-specifying-the-list-of-fields-to-be-returned)|
+|api_template|api_template=(public|public_minimum)|Defines the set of fields that will be returned.  public_minimum is recommended for applications that require higher performance. Web clients are encouraged to use public_minimum whenever possible.|
+
+
+
+
+
+
 
 
 <a name="api-modules-api-key"></a>
@@ -965,48 +993,28 @@ for each course returned.   You can do this with the **include_registrations** p
 <a name="sec-5-3-2-2"></a>
 ##### 5.3.2.2. Parameters
 
-<table>
-  <tr>
-    <th>Parameter</th>
-    <th>Example</th>
-    <th>Notes</th>
-  </tr>
-  <tr>
-    <td>__access method__</td>
-    <td>api_key=[an api key created previously]</td>
-    <td>see [Access Modes](#access-modes)</td>
-  </tr>
-  <tr>
-    <td>fields</td>
-    <td>fields=[field1,...]</td>
-    <td>see [specifying the list of fields to be returned](#quick-start-specifying-the-list-of-fields-to-be-returned)</td>
-  </tr>
-  <tr>
-    <td>api_template</td>
-    <td>api_template=(public|public_minimum)</td>
-    <td>Defines the set of fields that will be returned.  public_minimum is recommended for applications that require higher performance.
-      Web clients are encouraged to use public_minimum whenever possible.</td>
-  </tr>
-    <td>include_registrations</td>
-    <td>include_registrations=t</td>
-    <td>When access is via accessToken, with an associated user, a nested record showing the user's most recent registration to the course.</td>
-  </tr>
-  <tr>
-  </tr>
-  <tr>
-    <td>course_guid</td>
-    <td>course_guid=ACourseID</td>
-    <td>For a SCORMCloud course, this will match the course ID in scormcloud.
-      See also <a href="https://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.</a></td>
-  </tr>
-  <tr>
-    <td>title</td>
-    <td>title=[A Course Title]</td>
-    <td>An exact match of the course Title. Don't forget to URI encode your data.</td>
-  </tr>
-  <tr>
-    
-</table>
+
+All Bright API calls respond the parameters specified in [List of Parameters Available To All Methods](#api-modules-list-of-parameters-available-to-all-methods).
+
+Parameters unique to this method, not included in above:
+
+#### Control Parameters
+
+Control parameters are not filters and cannot be used with [Using Regular Expression Queries][#quick-start-using-regular-expression-queries].
+
+|Parameter|Example|Description|
+|--|--|--|
+|include_registrations|include_registrations=t|When access is via accessToken, with an associated user, a nested record showing the user's most recent registration to the course.|
+
+#### Filter Parameters
+
+Filter parameters restrict the rows to be returned.   Any filter parameter can be used with a regular expression, see [Using Regular Expression Queries][#quick-start-using-regular-expression-queries].
+
+
+|Parameter|Example|Description|
+|--|--|--|
+|course_guid|course_guid=ACourseID|For a SCORMCloud course, this will match the course ID in scormcloud.  See also <a href="https://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.|
+|title|title=[A Course Title]|An exact match of the course Title. Don't forget to URI encode your data.|
 
 
 
