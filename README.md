@@ -1000,7 +1000,7 @@ Parameters unique to this method, not included in above:
 
 ###### Control Parameters
 
-Control parameters are not filters and cannot be used with [Using Regular Expression Queries][#quick-start-using-regular-expression-queries].
+Control parameters are not filters and cannot be used with [Using Regular Expression Queries](#quick-start-using-regular-expression-queries).
 
 |Parameter|Example|Description|
 |--|--|--|
@@ -1008,7 +1008,7 @@ Control parameters are not filters and cannot be used with [Using Regular Expres
 
 ###### Filter Parameters
 
-Filter parameters restrict the rows to be returned.   Any filter parameter can be used with a regular expression, see [Using Regular Expression Queries][#quick-start-using-regular-expression-queries].
+Filter parameters restrict the rows to be returned.   Any filter parameter can be used with a regular expression, see [Using Regular Expression Queries](#quick-start-using-regular-expression-queries).
 
 
 |Parameter|Example|Description|
