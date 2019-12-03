@@ -770,7 +770,7 @@ These are described in more depth here:
 
 #### Parameters related to access method:
 
-Note, you specify __ONE OF__:
+Note, you must specify __ONE OF__:
 
 - api_token
 - realm_guid AND realm_secret_key
@@ -778,16 +778,16 @@ Note, you specify __ONE OF__:
 
 |Parameter|Example|Description|
 |--|--|--|
-|sc_app_id|||
-|sc_secret_key|||
-|realm_guid|||
-|realm_secret_key|||
-|api_token|||
+|sc_app_id|sc_app_id=[a valid sc_app_id]||
+|sc_secret_key|sc_secret_key=[a valid sc_secret_key]||
+|realm_guid|realm_guid=[a valid realm_guid]||
+|realm_secret_key|realm_secret_key=[a valid realm_secret_key]||
+|api_token|api_token=[a valid api_token]||
 
 #### Parameters that control the data to be returned.
 
-see 
-- 
+See [specifying the list of fields to be returned](#quick-start-specifying-the-list-of-fields-to-be-returned) for more information.
+
 
 |Parameter|Example|Description|
 |--|--|--|
