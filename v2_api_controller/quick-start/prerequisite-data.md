@@ -4,11 +4,7 @@ DNS entry is used to access it.  Don't know it?  Ask us at support@aura-software
 
 You should also have your [Bright Realm ID and Secret key](#access-modes-via-realm-id-and-secret-key), which can be obtained from <a href="https://bright.aura-software.com/contact-us/" target="Bright Support">Bright Support</a>.
 
-See the section on [access modes] for your alternatives for authenticating with Bright Server.
-
-You can also access Bright with a Bright realm app id and key [see section](#access-modes-via-realm-id-and-secret-key).
-
-Certain functionality can only be accessed with a realm key, such as invitations or the utilization of multiple course providers.
+See the section on [access modes](#access-modes) for your alternatives for authenticating with Bright Server.
 
 For the purposes of this example, we will use the following:
 
