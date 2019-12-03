@@ -524,8 +524,6 @@ custom_re=points_available\":\"([4-9]|[1-9]([0-9])+)'
 <a name="sec-3-4-2"></a>
 #### 3.4.2. Using Multiple Expressions On The Same Field.
 
-Using Multiple Expressions On The Same Field.
-
 It is possible to repeatedly query the same field from multiple
 regular expressions.  To do this, use a numerical suffix on the query
 parameter.  So instead of custom_re, for example, use
@@ -791,6 +789,7 @@ Note, you must specify __ONE OF__:
 |realm_guid|realm_guid=[a valid realm_guid]||
 |realm_secret_key|realm_secret_key=[a valid realm_secret_key]||
 |api_token|api_token=[a valid api_token]||
+|accessToken|accessToken|For historical reasons this is a synonym of __api_token__|
 
 #### Parameters that control the data to be returned.
 
@@ -800,7 +799,8 @@ See [specifying the list of fields to be returned](#quick-start-specifying-the-l
 |Parameter|Example|Description|
 |--|--|--|
 |fields|fields=[field1,...]|[specifying the list of fields to be returned](#quick-start-specifying-the-list-of-fields-to-be-returned)|
-|api_template|api_template=(public|public_minimum)|Defines the set of fields that will be returned.  public_minimum is recommended for applications that require higher performance. Web clients are encouraged to use public_minimum whenever possible.|
+|api_template|api_template=(public|public_minimum)|Defines the set of fields that will be returned.  public_minimum is recommended for applications that require higher performance. Web clients are encouraged to use public_minimum whenever possible.  Ignore if __fields__ is specified.|
+
 
 
 
@@ -1024,7 +1024,7 @@ Filter parameters restrict the rows to be returned.   Any filter parameter can b
 |course_guid|course_guid=ACourseID|For a SCORMCloud course, this will match the course ID in scormcloud.  See also <a href="https://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.|
 |title|title=My%20Course|An exact match of the course Title. Don't forget to URI encode your data.|
 |custom|custom=SomeCustomText|An exact match of the course custom. Don't forget to URI encode your data.  Much more useful with 'custom_re', as described in [Using Regular Expression Queries](#quick-start-using-regular-expression-queries)|
-  
+|id|id=[a course GUID]|As the Course GUID is the unique identifier for the course, it can be addressed via the id= construct|  
 
 
 
