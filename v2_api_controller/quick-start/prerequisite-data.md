@@ -2,7 +2,7 @@
 DNS entry is used to access it.  Don't know it?  Ask us at support@aura-software.com!
 
 
-You should also have your [Bright Realm ID and Secret key](#access-modes/via-realm-id-and-secret-key), which can be obtained from <a href="https://bright.aura-software.com/contact-us/" target="Bright Support">Bright Support</a>.
+You should also have your [Bright Realm ID and Secret key](#access-modes-via-realm-id-and-secret-key), which can be obtained from <a href="https://bright.aura-software.com/contact-us/" target="Bright Support">Bright Support</a>.
 
 
 *Access via SCORM Cloud app ID and secret key is deprecated and not recommended*
@@ -19,7 +19,7 @@ Here's an example of fetching these values from the SCORMCloud administration co
 
 You can access this by selection "Apps" from the SCORMCloud administration console left hand menu.
 
-You can also access Bright with a Bright realm app id and key [see section](#access-modes/via-realm-id-and-secret-key).
+You can also access Bright with a Bright realm app id and key [see section](#access-modes-via-realm-id-and-secret-key).
 
 Certain functionality can only be accessed with a realm key, such as invitations or the utilization of multiple course providers.
 
