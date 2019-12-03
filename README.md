@@ -764,9 +764,17 @@ For the API documentation that follows, for the sake of brevity we will omit in 
 
 These are described in more depth here:
 
+- [Response Format](#quick-start-specifying-a-results-format)
 - [Access Modes](#access-modes)
 - [Using Regular Expression Queries](#quick-start-using-regular-expression-queries)
 - [Specifying the List Of Fields To Be Returned](#quick-start-specifying-the-list-of-fields-to-be-returned)
+
+#### Parameters related to response format:
+
+|Parameter|Example|Description|
+|--|--|--|
+|format|format=(json|xml|csv)|Specify the format of the response|
+
 
 #### Parameters related to access method:
 
@@ -1014,7 +1022,9 @@ Filter parameters restrict the rows to be returned.   Any filter parameter can b
 |Parameter|Example|Description|
 |--|--|--|
 |course_guid|course_guid=ACourseID|For a SCORMCloud course, this will match the course ID in scormcloud.  See also <a href="https://help.aura-software.com/finding-a-course-id-in-scormcloud/">Finding Your Course ID in SCORMCloud.|
-|title|title=[A Course Title]|An exact match of the course Title. Don't forget to URI encode your data.|
+|title|title=My%20Course|An exact match of the course Title. Don't forget to URI encode your data.|
+|custom|custom=SomeCustomText|An exact match of the course custom. Don't forget to URI encode your data.  Much more useful with 'custom_re', as described in [Using Regular Expression Queries](#quick-start-using-regular-expression-queries)|
+  
 
 
 
