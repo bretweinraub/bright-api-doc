@@ -48,7 +48,7 @@ module Markup
 
       if ! self.text && ! self.file
         self.file = File.join(doc.path.gsub(/\.[a-z]+$/,''), "#{dir_path}.md")
-#        ckebug 1, file
+        STDERR.puts "Loading #{file}"
         if File.exists?(file)
           t=`cat #{file}`
           self.text = t
