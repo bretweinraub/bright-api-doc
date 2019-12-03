@@ -7,16 +7,17 @@
 		*	 2.2. [List of Available Resources](#sec-2-2)
 		*	 2.3. [Special Considerations for Cross-Browser Scripting Restrictions](#sec-2-3)
 *	 3. [Quick Start](#sec-3)
-		*	 3.1. [Prerequisite Data](#sec-3-1)
-		*	 3.2. [Specifying a results format](#sec-3-2)
-				*	 3.2.1. [Overview](#sec-3-2-1)
-				*	 3.2.2. [Fetching an XML result](#sec-3-2-2)
-				*	 3.2.3. [Fetching an JSON result](#sec-3-2-3)
-				*	 3.2.4. [Fetching a CSV result](#sec-3-2-4)
-		*	 3.3. [Using Regular Expression Queries](#sec-3-3)
-				*	 3.3.1. [Complex Example](#sec-3-3-1)
-				*	 3.3.2. [Using Multiple Expressions On The Same Field.](#sec-3-3-2)
-		*	 3.4. [Specifying the List Of Fields To Be Returned](#sec-3-4)
+		*	 3.1. [Using The Examples](#sec-3-1)
+		*	 3.2. [Prerequisite Data](#sec-3-2)
+		*	 3.3. [Specifying a results format](#sec-3-3)
+				*	 3.3.1. [Overview](#sec-3-3-1)
+				*	 3.3.2. [Fetching an XML result](#sec-3-3-2)
+				*	 3.3.3. [Fetching an JSON result](#sec-3-3-3)
+				*	 3.3.4. [Fetching a CSV result](#sec-3-3-4)
+		*	 3.4. [Using Regular Expression Queries](#sec-3-4)
+				*	 3.4.1. [Complex Example](#sec-3-4-1)
+				*	 3.4.2. [Using Multiple Expressions On The Same Field.](#sec-3-4-2)
+		*	 3.5. [Specifying the List Of Fields To Be Returned](#sec-3-5)
 *	 4. [Access Modes](#sec-4)
 		*	 4.1. [Via SCORMCloud App ID and Secret Key](#sec-4-1)
 		*	 4.2. [Via Bright API Key](#sec-4-2)
@@ -301,12 +302,34 @@ In the section we will quickly work throw the steps of connecting to the Bright 
 API calls.
 
 
-<a name="quick-start-prerequisite-data"></a>
+<a name="quick-start-using-the-examples"></a>
 <a name="sec-3-1"></a>
-### 3.1. Prerequisite Data
+### 3.1. Using The Examples
 
-* Your Bright API URL.  This will be provided to you and is based on where your Bright server is installed, and what
+
+A quick way to get started is to look at 
+
+<a href="https://github.com/aura-software/bright-api-examples">https://github.com/aura-software/bright-api-examples</a>
+
+It shows two methods of API access:
+
+  - Access Key
+  - Ream Guid/Secret Key
+  
+And the most common form of API use cases.
+
+
+
+
+<a name="quick-start-prerequisite-data"></a>
+<a name="sec-3-2"></a>
+### 3.2. Prerequisite Data
+
+* **Your Bright API URL**.  This will be provided to you and is based on where your Bright server is installed, and what
 DNS entry is used to access it.  Don't know it?  Ask us at support@aura-software.com!
+
+
+
 
 If you are using a SCORMCloud course provider, API access can be provided using your SCORMCloud APP ID and secret key.  These are
 available from Aura Support, or from the SCORMCloud console available at https://cloud.scorm.com.
@@ -374,16 +397,16 @@ And the result:
 
 
 <a name="quick-start-specifying-a-results-format"></a>
-<a name="sec-3-2"></a>
-### 3.2. Specifying a results format
+<a name="sec-3-3"></a>
+### 3.3. Specifying a results format
 
 The Bright API lets you specify the format of your results, but appending a suffix to the require URL prior to
 the query string.
 
 
 <a name="quick-start-specifying-a-results-format-overview"></a>
-<a name="sec-3-2-1"></a>
-#### 3.2.1. Overview
+<a name="sec-3-3-1"></a>
+#### 3.3.1. Overview
 
 Regardless of API call you are making, you must *always* specify an interface format when interacting with the Bright API.
 
@@ -400,8 +423,8 @@ deprecated and the request format is now required.
 
 
 <a name="quick-start-specifying-a-results-format-fetching-an-xml-result"></a>
-<a name="sec-3-2-2"></a>
-#### 3.2.2. Fetching an XML result
+<a name="sec-3-3-2"></a>
+#### 3.3.2. Fetching an XML result
 
 To fetch your results in XML format, append a '.xml' to the url, *before* the request parameters.  For example
 
@@ -412,8 +435,8 @@ https://[BRIGHT URL]/bright/api/v2/course.xml
 
 
 <a name="quick-start-specifying-a-results-format-fetching-an-json-result"></a>
-<a name="sec-3-2-3"></a>
-#### 3.2.3. Fetching an JSON result
+<a name="sec-3-3-3"></a>
+#### 3.3.3. Fetching an JSON result
 
 Let's say if you are using the API from Javascript, and you'd like your results back as JSON.  Easy, just
 rewrite the URL to use 'course.json' instead of 'course.xml'
@@ -455,8 +478,8 @@ And the result (formatted for readibility:
 
 
 <a name="quick-start-specifying-a-results-format-fetching-a-csv-result"></a>
-<a name="sec-3-2-4"></a>
-#### 3.2.4. Fetching a CSV result
+<a name="sec-3-3-4"></a>
+#### 3.3.4. Fetching a CSV result
 
 To fetch your results in CSV format, append a '.csv' to the url, *before* the request parameters.  For example
 
@@ -467,8 +490,8 @@ https://[BRIGHT URL]/bright/api/v2/course.csv
 
 
 <a name="quick-start-using-regular-expression-queries"></a>
-<a name="sec-3-3"></a>
-### 3.3. Using Regular Expression Queries
+<a name="sec-3-4"></a>
+### 3.4. Using Regular Expression Queries
 
 
 Using regular expression query is simple with the Bright API.
@@ -493,8 +516,8 @@ custom_re=[a matching expression on the custom field]
 
 
 <a name="quick-start-using-regular-expression-queries-complex-example"></a>
-<a name="sec-3-3-1"></a>
-#### 3.3.1. Complex Example
+<a name="sec-3-4-1"></a>
+#### 3.4.1. Complex Example
 
 In this example, we have a "pts available" field in the course custom
 field.
@@ -509,8 +532,8 @@ custom_re=points_available\":\"([4-9]|[1-9]([0-9])+)'
 
 
 <a name="quick-start-using-regular-expression-queries-using-multiple-expressions-on-the-same-field"></a>
-<a name="sec-3-3-2"></a>
-#### 3.3.2. Using Multiple Expressions On The Same Field.
+<a name="sec-3-4-2"></a>
+#### 3.4.2. Using Multiple Expressions On The Same Field.
 
 Using Multiple Expressions On The Same Field.
 
@@ -536,8 +559,8 @@ Note:
 
 
 <a name="quick-start-specifying-the-list-of-fields-to-be-returned"></a>
-<a name="sec-3-4"></a>
-### 3.4. Specifying the List Of Fields To Be Returned
+<a name="sec-3-5"></a>
+### 3.5. Specifying the List Of Fields To Be Returned
 
 
 You can specify a set of fields to be returned by a Bright API call.

@@ -19,6 +19,7 @@ apiDocSpecification = {
     'Special Considerations for Cross-Browser Scripting Restrictions' => {}
   },
   'Quick Start' => {
+    'Using The Examples' => {},
     'Prerequisite Data' => {},
     'Specifying a results format' => {
       'Overview' => {},
