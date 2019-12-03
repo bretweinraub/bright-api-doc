@@ -389,8 +389,7 @@ And the result:
 <a name="sec-3-3"></a>
 ### 3.3. Specifying a results format
 
-The Bright API lets you specify the format of your results, but appending a suffix to the require URL prior to
-the query string.
+The Bright API lets you specify the format of your results by appending a suffix to the URL prior to the query string.
 
 
 <a name="quick-start-specifying-a-results-format-overview"></a>
@@ -407,6 +406,15 @@ This must be specified
 
 While in previous software versions, in some cases the request format was inferred, and '.json' could be ommitted, this model is 
 deprecated and the request format is now required.
+
+You can also specify the response format via query parameter:
+
+|Parameter|Example|Description|
+|--|--|--|
+|format|format=(xml\|json\|csv)|Specify the response format|
+
+If you specify both via URL, and query parameter, the behaviour is undefined.
+
 
 
 

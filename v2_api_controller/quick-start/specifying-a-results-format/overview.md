@@ -9,4 +9,13 @@ This must be specified
 While in previous software versions, in some cases the request format was inferred, and '.json' could be ommitted, this model is 
 deprecated and the request format is now required.
 
+You can also specify the response format via query parameter:
+
+|Parameter|Example|Description|
+|--|--|--|
+|format|format=(xml\|json\|csv)|Specify the response format|
+
+If you specify both via URL, and query parameter, the behaviour is undefined.
+
+
 
