@@ -1,5 +1,5 @@
 
-All Bright API calls respond the parameters specified in [List of Parameters Available To All Methods](#api-modules-list-of-parameters-available-to-all-methods).
+All Bright API calls respond to the parameters specified in [List of Parameters Available To All Methods](#api-modules-list-of-parameters-available-to-all-methods).
 
 Parameters unique to this method, not included in above:
 
@@ -9,7 +9,7 @@ Control parameters are not filters and cannot be used with [Using Regular Expres
 
 |Parameter|Example|Description|
 |--|--|--|
-|include_registrations|include_registrations=t|When access is via accessToken, with an associated user, a nested record showing the user's most recent registration to the course.|
+|include_registrations|include_registrations=t|When access is via api key, where the key is associated to a single user, a nested record showing the user's most recent registration to the course.|
 
 ###### Filter Parameters
 
