@@ -2,7 +2,10 @@
 DNS entry is used to access it.  Don't know it?  Ask us at support@aura-software.com!
 
 
+You should also have your [Bright Realm ID and Secret key](#access-modes/via-realm-id-and-secret-key), which can be obtained from <a href="https://bright.aura-software.com/contact-us/" target="Bright Support">Bright Support</a>.
 
+
+*Access via SCORM Cloud app ID and secret key is deprecated and not recommended*
 
 If you are using a SCORMCloud course provider, API access can be provided using your SCORMCloud APP ID and secret key.  These are
 available from Aura Support, or from the SCORMCloud console available at https://cloud.scorm.com.
