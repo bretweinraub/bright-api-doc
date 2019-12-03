@@ -773,7 +773,7 @@ These are described in more depth here:
 
 |Parameter|Example|Description|
 |--|--|--|
-|format|format=(json|xml|csv)|Specify the format of the response|
+|format|format=(json\|xml\|csv)|Specify the format of the response|
 
 
 #### Parameters related to access method:
