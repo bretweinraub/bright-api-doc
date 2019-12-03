@@ -19,9 +19,9 @@
 				*	 3.4.2. [Using Multiple Expressions On The Same Field.](#sec-3-4-2)
 		*	 3.5. [Specifying the List Of Fields To Be Returned](#sec-3-5)
 *	 4. [Access Modes](#sec-4)
-		*	 4.1. [Via SCORMCloud App ID and Secret Key](#sec-4-1)
-		*	 4.2. [Via Bright API Key](#sec-4-2)
-		*	 4.3. [Via Realm ID and Secret Key](#sec-4-3)
+		*	 4.1. [Via Bright API Key](#sec-4-1)
+		*	 4.2. [Via Realm ID and Secret Key](#sec-4-2)
+		*	 4.3. [Via SCORMCloud App ID and Secret Key](#sec-4-3)
 *	 5. [API Modules](#sec-5)
 		*	 5.1. [API Key](#sec-5-1)
 				*	 5.1.1. [Method: create](#sec-5-1-1)
@@ -588,9 +588,101 @@ The Bright API can be accessed to two different ways:
 
 
 
-<a name="access-modes-via-scormcloud-app-id-and-secret-key"></a>
+<a name="access-modes-via-bright-api-key"></a>
 <a name="sec-4-1"></a>
-### 4.1. Via SCORMCloud App ID and Secret Key
+### 4.1. Via Bright API Key
+
+The API Key interface allows for the creation of API keys for Bright Server.
+
+If you want to access the Bright API from some browser side Javascript, using the SCORMCloud or Bright Realm secret key is no good.  NEVER put your Secret Key into the browser via Javascript.
+
+Instead the Bright API allows you to create an authentication token that you can use to send to the browser.  When you generate this token, typically you specify
+
+* the SCORMCloud app id/secret key OR bright realm secret key
+* optionally the user
+
+These application tokens are disabled after a short period of time.  Do not hard code the use of a Bright API key, as these keys expire after a period of time.  
+
+Here's an example of getting an API token.  This first call creates a special access token to a specific user for a specific SCORMCloud application.  The key that is returned is suitable for 
+embedding in a web page for use by browser side Javascript.
+
+```shell
+curl 'https://[BRIGHT URL]/bright/api/v2/api_key/create?sc_app_id=RQIBAXU49I
+&sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N
+&user_email=admin@aura-software.com'
+(returns) df8d1350a6b31378a86b967767f4bba1
+```
+
+You can now omit the secret key and app id from subsequent calls and just use the API key:
+
+```shell
+curl 'https://[BRIGHT URL]/bright/api/v2/course.xml?\
+api_token=bdb273e9cdace9698c34d97070cb392d'
+```
+This API token is now "bound" to the access level specified when the key was created.
+
+
+
+<a name="access-modes-via-realm-id-and-secret-key"></a>
+<a name="sec-4-2"></a>
+### 4.2. Via Realm ID and Secret Key
+
+Your Bright realm ID and secret key will be furnished to you by Bright support.  For many functions it is not necessary.  If you aren't working
+with invitations, creating user records on the fly, or using multiple course providers, you probably won't need a Realm key.  Note you do not
+need to create a user to assign a user to a course.  This is done on the fly and if you aren't populating custom metadata for a user, it is 
+not necessary to pre-populate the user.
+
+If you need to use a realm ID and secret key, it will be provided to you by Aura support.  You can file a request at support@aura-software.com
+
+For the purposes of this example, we will use the following:
+
+ * realm_guid: sJLtP8Zt8G0Sbz9kxPjQ
+ * realm_secret_key: PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w
+
+With these, lets create an api key 'bound' to this authentication level:
+
+```shell
+curl 'https://[BRIGHT URL]/bright/api/v2/api_key/gcreate?
+realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
+realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
+```
+
+And the response:
+
+```shell
+{
+ "access_token":"2a84a6ddb229c13bc945874b69fab8ba",
+ "course_provider_id":null,
+ "created_at":"2013-07-03T00:25:37Z",
+ "expires_at":null,
+ "id":2038,
+ "realm_id":4,
+ "token_type":null,
+ "updated_at":"2013-07-03T00:25:37Z",
+ "user_id":null
+}
+```
+
+We can now use the "access_token" returned as an API key in an insecure situation:
+
+```shell
+curl 'https://[BRIGHT URL]/bright/api/v2/course?
+api_key=2a84a6ddb229c13bc945874b69fab8ba'
+```
+
+Or in a secure situation, you can use the realm key directly:
+
+```shell
+curl 'https://[BRIGHT URL]/bright/api/v2/course?
+realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
+realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
+```
+
+
+
+<a name="access-modes-via-scormcloud-app-id-and-secret-key"></a>
+<a name="sec-4-3"></a>
+### 4.3. Via SCORMCloud App ID and Secret Key
 
 This sections describes authentication using the SCORMCloud secret key and app id.
 
@@ -648,98 +740,6 @@ And the result:
 
 
 The above example will show all courses for the course provider defined by the SCORMCloud data (app id, secret key).
-
-
-
-<a name="access-modes-via-bright-api-key"></a>
-<a name="sec-4-2"></a>
-### 4.2. Via Bright API Key
-
-The API Key interface allows for the creation of API keys for Bright Server.
-
-If you want to access the Bright API from some browser side Javascript, using the SCORMCloud or Bright Realm secret key is no good.  NEVER put your Secret Key into the browser via Javascript.
-
-Instead the Bright API allows you to create an authentication token that you can use to send to the browser.  When you generate this token, typically you specify
-
-* the SCORMCloud app id/secret key OR bright realm secret key
-* optionally the user
-
-These application tokens are disabled after a short period of time.  Do not hard code the use of a Bright API key, as these keys expire after a period of time.  
-
-Here's an example of getting an API token.  This first call creates a special access token to a specific user for a specific SCORMCloud application.  The key that is returned is suitable for 
-embedding in a web page for use by browser side Javascript.
-
-```shell
-curl 'https://[BRIGHT URL]/bright/api/v2/api_key/create?sc_app_id=RQIBAXU49I
-&sc_secret_key=nCwrTDSy1MzaeyhN0TFfi3uH3huzlu6CNmyHUG5N
-&user_email=admin@aura-software.com'
-(returns) df8d1350a6b31378a86b967767f4bba1
-```
-
-You can now omit the secret key and app id from subsequent calls and just use the API key:
-
-```shell
-curl 'https://[BRIGHT URL]/bright/api/v2/course.xml?\
-api_token=bdb273e9cdace9698c34d97070cb392d'
-```
-This API token is now "bound" to the access level specified when the key was created.
-
-
-
-<a name="access-modes-via-realm-id-and-secret-key"></a>
-<a name="sec-4-3"></a>
-### 4.3. Via Realm ID and Secret Key
-
-Your Bright realm ID and secret key will be furnished to you by Bright support.  For many functions it is not necessary.  If you aren't working
-with invitations, creating user records on the fly, or using multiple course providers, you probably won't need a Realm key.  Note you do not
-need to create a user to assign a user to a course.  This is done on the fly and if you aren't populating custom metadata for a user, it is 
-not necessary to pre-populate the user.
-
-If you need to use a realm ID and secret key, it will be provided to you by Aura support.  You can file a request at support@aura-software.com
-
-For the purposes of this example, we will use the following:
-
- * realm_guid: sJLtP8Zt8G0Sbz9kxPjQ
- * realm_secret_key: PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w
-
-With these, lets create an api key 'bound' to this authentication level:
-
-```shell
-curl 'https://[BRIGHT URL]/bright/api/v2/api_key/gcreate?
-realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
-realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
-```
-
-And the response:
-
-```shell
-{
- "access_token":"2a84a6ddb229c13bc945874b69fab8ba",
- "course_provider_id":null,
- "created_at":"2013-07-03T00:25:37Z",
- "expires_at":null,
- "id":2038,
- "realm_id":4,
- "token_type":null,
- "updated_at":"2013-07-03T00:25:37Z",
- "user_id":null
-}
-```
-
-We can now use the "access_token" returned as an API key in an insecure situation:
-
-```shell
-curl 'https://[BRIGHT URL]/bright/api/v2/course?
-api_key=2a84a6ddb229c13bc945874b69fab8ba'
-```
-
-Or in a secure situation, you can use the realm key directly:
-
-```shell
-curl 'https://[BRIGHT URL]/bright/api/v2/course?
-realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&
-realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w'
-```
 
 
 
