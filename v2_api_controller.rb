@@ -59,6 +59,10 @@ apiDocSpecification = {
         'Example' => {},
         'HTTP Codes' => {},
       },
+      'Method: Autocomplete' => {
+        'Parameters' => {},
+        'Example' => {},        
+      }
     },
     'Invitation' => {
       'Method: add_learners' => BrightApiMethod.new(

@@ -38,6 +38,9 @@
 						*	 5.3.2.2. [Parameters](#sec-5-3-2-2)
 						*	 5.3.2.3. [Example](#sec-5-3-2-3)
 						*	 5.3.2.4. [HTTP Codes](#sec-5-3-2-4)
+				*	 5.3.3. [Method: Autocomplete](#sec-5-3-3)
+						*	 5.3.3.1. [Parameters](#sec-5-3-3-1)
+						*	 5.3.3.2. [Example](#sec-5-3-3-2)
 		*	 5.4. [Invitation](#sec-5-4)
 				*	 5.4.1. [Method: add_learners](#sec-5-4-1)
 						*	 5.4.1.1. [HTTP Model](#sec-5-4-1-1)
@@ -1068,6 +1071,49 @@ curl -w "%{http_code}" 'https://[BRIGHT URL]/bright/api/v2/course.json?course_gu
 	<td>An illegal request, such as a malformed argument.</td>
   </tr>		 
 </table>
+
+
+<a name="api-modules-course-method-autocomplete"></a>
+<a name="sec-5-3-3"></a>
+#### 5.3.3. Method: Autocomplete
+
+
+
+<a name="api-modules-course-method-autocomplete-parameters"></a>
+<a name="sec-5-3-3-1"></a>
+##### 5.3.3.1. Parameters
+
+
+All Bright API calls respond to the parameters specified in [List of Parameters Available To All Methods](#api-modules-list-of-parameters-available-to-all-methods).
+
+Parameters unique to this method, not included in above:
+
+###### Control Parameters
+
+None
+
+###### Filter Parameters
+
+Filter parameters restrict the rows to be returned.  
+
+|Parameter|Example|Description|
+|--|--|--|
+|q|q=[a search string]|Return a list of courses where the search text matches any text in title, GUID, or custom data.|
+
+
+<a name="api-modules-course-method-autocomplete-example"></a>
+<a name="sec-5-3-3-2"></a>
+##### 5.3.3.2. Example
+
+
+```
+curl http://localhost:3000/bright/api/v2/course/autocomplete?realm_guid=sJLtP8Zt8G0Sbz9kxPjQ&realm_secret_key=PcVQflTCUIbe3ps2T86KXAzvXzdpFcgs5Mvku03uZ8w&q=Course
+```
+
+Response:
+```
+["A Test Course (GUID: a-test-course__dfc1d5fd-2a53-4977-8ac2-e3c6d72f3bdb)","eLearning Course (GUID: FM1_Aura-Software_TESTea2385b2-5329-4e32-9502-ede40f5a7466)","POC Course (GUID: ncmm-poc-course__19bc6523-d92e-4d35-93ce-e5296c14187a)","Yoga for Weight Loss morning and evening routine (GUID: YogaforWeightLossmorningandeveningroutine8eae0014-ca8b-4e52-abcb-e08044760103)"]
+```
 
 
 <a name="api-modules-invitation"></a>
