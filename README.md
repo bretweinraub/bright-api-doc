@@ -1078,6 +1078,8 @@ curl -w "%{http_code}" 'https://[BRIGHT URL]/bright/api/v2/course.json?course_gu
 #### 5.3.3. Method: Autocomplete
 
 
+The autocomplete method does a full-text search across the course title, GUID, and custom field a returns a cooked response.
+
 
 <a name="api-modules-course-method-autocomplete-parameters"></a>
 <a name="sec-5-3-3-1"></a>
