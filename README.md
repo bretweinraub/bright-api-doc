@@ -1086,7 +1086,7 @@ The autocomplete method does a full-text search across the course title, GUID, a
 ##### 5.3.3.1. Parameters
 
 
-All Bright API calls respond to the parameters specified in [List of Parameters Available To All Methods](#api-modules-list-of-parameters-available-to-all-methods).
+The autocomplete method is deprecated does not conform to regular Bright API standards and is included for historical reasons.
 
 Parameters unique to this method, not included in above:
 
